@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboHive - Robotics & Software Solutions</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./navbar.css">
+    <link rel="stylesheet" href="./parallax.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <!--<i class="fas fa-robot"></i>-->
+            <span><img src="./logo.svg" alt="BeeBotix"></span>
+        </div>
+        <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="./products.html">Products</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="parallax-section">
+        <div class="hero-content">
+            <h1>Buzz in Robotics</h1>
+            <p>Custom robots (RAAS) and software (SAAS) solutions for industry and innovation</p>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <h2>Our Services</h2>
+        <div class="services-grid"></div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section">
+        <h2>Our Team</h2>
+        <div class="team-grid" id="teamGrid"></div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-container" id="faqContainer"></div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+            <form class="contact-form" id="contactForm">
+                <div class="input-group">
+                    <input type="text" id="name" name="name" placeholder=" " required>
+                    <label for="name">Your Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="email" name="email" placeholder=" " required>
+                    <label for="email">Your Email</label>
+                </div>
+                <div class="input-group full-width">
+                    <input type="text" id="subject" name="subject" placeholder=" " required>
+                    <label for="subject">Subject</label>
+                </div>
+                <div class="input-group full-width">
+                    <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+                    <label for="message">Your Message</label>
+                </div>
+                <button type="submit" class="submit-btn full-width">Send Message</button>
+            </form>
+        </div>
+    </section>
+    
+
+    <!-- Clients Section -->
+    <section id="clients" class="clients-section">
+        <h2>Trusted By Industry Leaders</h2>
+        <div class="clients-wrapper">
+            <div class="clients-slider"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>BeeBotix</h3>
+                <p>Innovative robotics and software solutions for the future.</p>
+                <div class="social-links">
+                    <a href="https://github.com/BeeBotix"><i class="fab fa-github"></i></a>
+                    <a href="https://in.linkedin.com/in/sukarna-jana"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/beebotix/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/janasukarna"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="./products.html">Products</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> contact@beebotix.com</li>
+                    <li><i class="fas fa-phone"></i> +91 9113688393</li>
+                    <li><i class="fas fa-map-marker-alt"></i> PLA @ Presidency University, Bengaluru - 560064</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 BeeBotix. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Download Button -->
+    <button class="float-btn" id="downloadBtn">
+        <i class="fas fa-download"></i>
+        <span>Download Brochure</span>
+    </button>
+
+    <script type="module" src="./main.js"></script>
+</body>
+</html>

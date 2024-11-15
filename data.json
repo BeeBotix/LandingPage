@@ -1,0 +1,208 @@
+{
+    "services": [
+      {
+        "icon": "robot",
+        "title": "Custom Robots",
+        "description": "Industrial-grade and consumer robots tailored for manufacturing, automation, and personalized applications. Built with precision to maximize efficiency and adaptability.",
+        "features": [
+          "Industrial Automation",
+          "Business Process Automation",
+          "Home/Office Automation",
+          "Custom Robotics Solutions"
+        ]
+      },
+      {
+        "icon": "microchip",
+        "title": "Custom Dev Boards",
+        "description": "Custom-built development boards designed to meet specific B2B requirements. From IoT to robotics, our boards are built for high performance and are perfect for developers and enthusiasts.",
+        "features": [
+          "B2B Customization",
+          "IoT and Robotics",
+          "Prototyping Solutions",
+          "STEM and Educational Kits"
+        ]
+      },
+      {
+        "icon": "cogs",
+        "title": "Consultancy Services",
+        "description": "Leverage our expertise in robotics, software, and automation. We provide strategic consulting to help businesses streamline their operations and implement innovative solutions.",
+        "features": [
+          "Technical Consultation",
+          "Business Process Optimization",
+          "Robotics and Software Implementation",
+          "Training and Knowledge Transfer"
+        ]
+      },
+      {
+        "icon": "code",
+        "title": "Embedded Software Solutions",
+        "description": "Advanced embedded software and application solutions designed to automate and enhance hardware performance. Tailored for specific machines or processes to boost efficiency.",
+        "features": [
+          "Embedded System Design",
+          "Custom Firmware Development",
+          "IoT and Automation Platforms",
+          "Control Systems and Monitoring"
+        ]
+      },
+      {
+        "icon": "project-diagram",
+        "title": "R&D and New Product Development",
+        "description": "Our R&D team is dedicated to pioneering new technologies in robotics and automation. From underwater exploration ROVs to advanced AUVs for scientific and rescue missions, we bring cutting-edge innovations to life.",
+        "features": [
+          "Underwater Robotics",
+          "Research and Prototyping",
+          "Data Collection for Science",
+          "Exploration and Rescue Operations"
+        ]
+      },
+      {
+        "icon": "toolbox",
+        "title": "Custom PCB Design",
+        "description": "Professional custom PCB design services tailored to client needs. Currently serving multiple companies with precise, high-quality PCBs for unique applications.",
+        "features": [
+          "B2B Solutions",
+          "Custom PCB Layouts",
+          "Manufacturing and Prototyping",
+          "Ongoing Support for ClueKick and ScanPick"
+        ]
+      },
+      {
+        "icon": "chalkboard-teacher",
+        "title": "Education & Project Development",
+        "description": "Assisting over 4+ college students in turning their academic projects into reality, from ideation to completion, for both academic and final-year projects.",
+        "features": [
+          "Academic Project Guidance",
+          "Prototype and Model Building",
+          "Hardware and Software Solutions",
+          "STEM and Robotics Education"
+        ]
+      },
+      {
+        "icon": "network-wired",
+        "title": "White-Label Module Services",
+        "description": "Customizable, white-label hardware and software modules designed for B2B clients, including specialized embedded solutions and automation tools.",
+        "features": [
+          "White-Label Solutions",
+          "Module-Based Customization",
+          "B2B Hardware and Software",
+          "Branding and Packaging Options"
+        ]
+      },
+      {
+        "icon": "mobile-alt",
+        "title": "SaaS and Web Solutions",
+        "description": "Comprehensive web and mobile application development services. From SaaS to custom apps, we create digital solutions that are reliable, scalable, and optimized for the best user experience.",
+        "features": [
+          "Mobile and Web App Development",
+          "Scalable SaaS Solutions",
+          "User-Centric Design",
+          "Customizable for Various Industries"
+        ]
+      }
+    ],
+    "team": [
+      {
+        "name": "Mr. Sukarna Jana",
+        "position": "Founder of Beebotix",
+        "image": "./assets/img/sukarna_bee.png",
+        "expertise": "Robotics",
+        "social": {
+          "linkedin": "https://in.linkedin.com/in/sukarna-jana",
+          "github": "https://github.com/Sukarnascience",
+          "twitter": "https://x.com/janasukarna"
+        }
+      },
+      {
+        "name": "Ms. Monika B S",
+        "position": "Co-Founder",
+        "image": "./assets/img/monika_bee.png",
+        "expertise": "Embedded Systems",
+        "social": {
+          "linkedin": "https://www.linkedin.com/in/monika-b-s-b7467225a/",
+          "github": "#",
+          "twitter": "#"
+        }
+      },
+      {
+        "name": "Mr. Yash Singh",
+        "position": "Co-Founder",
+        "image": "./assets/img/unknown_bee.png",
+        "expertise": "Finance and PR",
+        "social": {
+          "linkedin": "#",
+          "github": "#",
+          "twitter": "#"
+        }
+      }
+    ],
+      "faq": [
+        {
+          "question": "What types of robots do you develop?",
+          "answer": "We specialize in custom robots for industrial automation, business processes, and home/office needs. Our solutions range from small automated systems to large-scale industrial robots, tailored for specific applications."
+        },
+        {
+          "question": "What is RAAS, and how does it apply to your services?",
+          "answer": "RAAS, or Robotics-as-a-Service, is a model where we offer robotics solutions on a subscription or usage basis. This allows businesses to leverage advanced robotics without the upfront costs, making it accessible and scalable for various needs."
+        },
+        {
+          "question": "What are your goals for B2C and B2B services?",
+          "answer": "Our initial goal is to provide B2C services through development boards and microservices, supporting individual creators and hobbyists. Long-term, we aim to expand our B2B offerings with RAAS and SAAS (Software-as-a-Service) solutions, enabling larger enterprises to access our advanced robotics and software products."
+        },
+        {
+          "question": "What is your vision for underwater robotics and ocean exploration?",
+          "answer": "Our vision includes pioneering underwater robotics for ocean exploration, scientific data collection, and rescue operations. We are committed to developing ROVs (Remotely Operated Vehicles) and AUVs (Autonomous Underwater Vehicles) to aid in underwater research and expand human knowledge of marine environments."
+        },
+        {
+          "question": "Do you provide support for academic projects?",
+          "answer": "Yes! We've successfully assisted over 300+ college students in bringing their academic and final-year projects to life, offering both hardware and software support."
+        },
+        {
+          "question": "What industries do you serve?",
+          "answer": "We serve multiple industries, including manufacturing, research institutions, educational sectors, and technology companies. Our solutions are versatile and adaptable to meet various industry needs."
+        },
+        {
+          "question": "Can you help with custom PCB development?",
+          "answer": "Yes, we design and manufacture custom PCBs tailored to specific requirements. We currently provide PCB solutions for companies like ClueKick and ScanPick."
+        },
+        {
+          "question": "What is your approach to project development?",
+          "answer": "We follow an agile methodology, collaborating closely with clients at each stage of the development process. This ensures that the final product aligns with all client requirements and specifications."
+        },
+        {
+          "question": "What is SAAS, and how do you implement it in your offerings?",
+          "answer": "SAAS, or Software-as-a-Service, allows clients to access software applications via the cloud without managing the infrastructure themselves. We offer customized software solutions for hardware automation, research, and business applications through this model, allowing flexible and scalable solutions."
+        }
+      ],    
+    "clients": [
+      {
+        "name": "MetaEx Technology Services Pvt. Ltd.",
+        "logo": "./assets/img/metaex.png",
+        "description": "Leading technology services provider",
+        "website":"https://metaextec.com/"
+      },
+      {
+        "name": "ScanPick Pvt. Ltd.",
+        "logo": "./assets/img/scanpick.png",
+        "description": "Innovative scanning solutions",
+        "website":"https://scanpick.in/"
+      },
+      {
+        "name": "Hope For 0b001",
+        "logo": "./assets/img/hopefor.png",
+        "description": "Advanced technology solutions",
+        "website":"#"
+      },
+      {
+        "name": "PLA",
+        "logo": "./assets/img/pla.png",
+        "description": "E - Cell",
+        "website":"https://metaextec.com/"
+      },
+      {
+        "name": "M/s. Vikasana",
+        "logo": "./assets/img/vikasana.png",
+        "description": "Development and innovation",
+        "website":"https://vikasana.tech/"
+      }
+    ]
+  }

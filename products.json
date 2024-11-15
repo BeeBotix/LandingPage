@@ -1,0 +1,54 @@
+{
+    "hardware": [
+        {
+            "id": "1",
+            "title": "Bee Nest",
+            "description": "A powerful development board for multiple applications. | #ESP32 #SD-Card-Log #USB-C #IO-Expansion On board",
+            "image": "./assets/img/comingsoon.png",
+            "brochure": "path-to-brochure.pdf",
+            "price": "₹1062"
+        },
+        {
+            "id": "2",
+            "title": "Buzz32 Servo Shield",
+            "description": "32 Servo Controller Arduino Uno Form Factor Compatible Shield | #Robotics #Mini-Humanoid #Spider-Bot",
+            "image": "./assets/img/comingsoon.png",
+            "brochure": "#",
+            "price": "₹708"
+        },
+        {
+            "id": "3",
+            "title": "Buzzy Room R1",
+            "description": "A powerful STEM Board | #ESP32 #OLED #LORA #WiFi #BLT #RDB #I2C #BME28 #MPU9250 #SD-Card-Log #USB-C",
+            "image": "./assets/img/comingsoon.png",
+            "brochure": "#",
+            "price": "₹1779"
+        }
+    ],
+    "software": [
+        {
+            "id": "1",
+            "title": "BuzzyScreenOS",
+            "description": "Raspberry Pi 3 and above, Kiosk Specific OS | #WiFi based Update #Dinamic #Light Weight",
+            "image": "./assets/img/comingsoon.png",
+            "brochure": "#",
+            "price": "Free"
+        },
+        {
+            "id": "2",
+            "title": "BuzzTheBot",
+            "description": "Python Based GUI Software for Robot Testing (Win,Linux,Mac) Py-V:9 and Above | Robotic : Humanoid, Dog. For init. Body Parts",
+            "image": "./assets/img/comingsoon.png",
+            "brochure": "#",
+            "price": "Free"
+        },
+        {
+            "id": "3",
+            "title": "WEB BuzzyIDE",
+            "description": "Web Based IDE for all Bebotix Board | NO-CODE Platform (Block Coding) for Kids STEM Education, Plug -> Drag -> Run",
+            "image": "./assets/img/comingsoon.png",
+            "brochure": "#",
+            "price": "Free"
+        }
+    ]
+}
