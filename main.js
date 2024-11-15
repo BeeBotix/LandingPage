@@ -67,7 +67,7 @@ function renderTeam(team) {
             <div class="team-info">
                 <h3>Join Us</h3>
                 <p>Let's buzz together in RAAS and SAAS</p>
-                <a href="https://forms.google.com/your-form-link" class="cta-button" target="_blank">Join Us</a>
+                <a href="mailto:contact@beebotix.com" class="cta-button" target="_blank">Join Us</a>
             </div>
         </div>
     `;
