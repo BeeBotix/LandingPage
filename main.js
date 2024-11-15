@@ -120,24 +120,37 @@ function renderClients(clients) {
 
 // Contact Form Handler
 const contactForm = document.getElementById('contactForm');
+
+// Ensure Email.js is initialized with your public key
+emailjs.init("K9PmDAw2eoItuAJgX"); // Replace with your actual public key
+
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
+
         const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData);
 
-        // Create a formatted string with all form data to display in the alert
-        const formDataString = `
-            Name: ${data.name}
-            Email: ${data.email}
-            Subject: ${data.subject}
-            Message: ${data.message}
-        `;
+        const templateParams = {
+            name: data.name,
+            email: data.email,
+            subject: data.subject,
+            message: data.message
+        };
 
-        console.log('Form submitted:', data);
-        alert(`Thank you for your message!\n\n${formDataString}`);
-        
-        contactForm.reset();
+        // Replace `serviceID` and `templateID` with your actual IDs
+        const serviceID = "service_rwc5cf5";
+        const templateID = "template_tkr2wgr";
+
+        emailjs.send(serviceID, templateID, templateParams)
+            .then(response => {
+                alert(`Thank you, ${data.name}! Your message has been sent successfully.`);
+                contactForm.reset();
+            })
+            .catch(error => {
+                console.error("Email.js error:", error);
+                alert("Oops! Something went wrong while sending your message. Please try again.");
+            });
     });
 }
 
