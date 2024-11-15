@@ -62,7 +62,7 @@ function renderTeam(team) {
     teamGrid.innerHTML = teamHTML + `
         <div class="team-card join-card">
             <div class="image-container">
-                <img src="./assets/img/join_bee.png" alt="Join Our Team">
+                <img src="./assets/img/bee_army.png" alt="Join Our Team">
             </div>
             <div class="team-info">
                 <h3>Join Us</h3>
