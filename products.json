@@ -4,9 +4,9 @@
             "id": "1",
             "title": "Bee Nest",
             "description": "A powerful development board for multiple applications. | #ESP32 #SD-Card-Log #USB-C #IO-Expansion On board",
-            "image": "./assets/img/comingsoon.png",
-            "brochure": "path-to-brochure.pdf",
-            "price": "₹1062"
+            "image": "https://drive.google.com/thumbnail?id=1yqbWKQfi4f54O3lW4L4r3rbJQMK3j5a_&sz=w1000",
+            "brochure": "https://drive.google.com/file/d/1l0AwTR3oGCuGoYiWYhMmn6NNKoQDeYuA/view?usp=sharing",
+            "price": "₹1299"
         },
         {
             "id": "2",
