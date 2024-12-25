@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>${product.description}</p>
                 <div class="price">${product.price}</div>
                 <button class="download-btn">
-                    <a href="${product.brochure}"><i class="fas fa-download">Download Brochure</i></a>
+                    <a href="${product.brochure}" style="text-decoration: none;"><i class="fas fa-download">Download Brochure</i></a>
                 </button>
             </div>
         `;
