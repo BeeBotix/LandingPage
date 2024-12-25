@@ -158,7 +158,7 @@ if (contactForm) {
 const downloadBtn = document.getElementById('downloadBtn');
 if (downloadBtn) {
     downloadBtn.addEventListener('click', () => {
-        alert('Brochure currently unavailable...');
+        window.location.href = "https://drive.google.com/file/d/1YFW3v2qWdhCFway3EBsG8YWMYUboA1JO/view?usp=sharing";
     });
 }
 
