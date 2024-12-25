@@ -1,2 +1,3 @@
 User-agent: *
 Disallow:
+Sitemap: https://beebotix.com/sitemap.xml
