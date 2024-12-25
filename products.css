@@ -199,6 +199,11 @@ main {
     background: var(--primary-light);
 }
 
+.download-btn a{
+    text-decoration: none;
+    color: var(--background);
+}
+
 /* Coming Soon Card */
 .coming-soon {
     display: flex;
