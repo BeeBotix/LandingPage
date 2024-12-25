@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>${product.description}</p>
                 <div class="price">${product.price}</div>
                 <button class="download-btn">
-                    <i class="fas fa-download"></i> Download Brochure
+                    <i class="fas fa-download">${product.brochure}</i> Download Brochure
                 </button>
             </div>
         `;
