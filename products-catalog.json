@@ -1,0 +1,56 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "BeeNest R2",
+            "image": "https://drive.google.com/thumbnail?id=1xsbDA2TVI2bB9rPo9rYFqMl7qNg8ILvf&sz=w1000",
+            "description": [
+                "Powered by ESP32-S3 MCU with 16MB memory",
+                "IO extender supporting up to 16 onboard devices over I2C",
+                "Onboard NEO Pixel LED for customizable lighting",
+                "Onboard SD card slot for easy data storage",
+                "Integrated buzzer for audio alerts"
+            ],
+            "price": 1400
+        },
+        {
+            "id": 2,
+            "name": "BeeTimer Controller",
+            "image": "https://drive.google.com/thumbnail?id=1StXzjDHpFBdlm30XRrmD8PyS0N38oTW-&sz=w1000",
+            "description": [
+                "ESP07-based IoT controller for managing up to 4 switches",
+                "Integrated WiFi for seamless connectivity",
+                "Onboard Real-Time Clock (RTC) for accurate time tracking",
+                "Plug-and-play setup for quick deployment",
+                "Web interface available for easy configuration"
+            ],
+            "price": 1200
+        },
+        {
+            "id": 3,
+            "name": "Buzz32_Servo Shield",
+            "image": "https://drive.google.com/thumbnail?id=1Ig5GVVRGdm2C0NHJNyRnuQiZaV4eaS7l&sz=w1000",
+            "description": [
+                "Compatible with BeeNest, Arduino UNO, Mega, and more",
+                "Control up to 32 servos via I2C interface",
+                "Supports VIN input range from 3.3V to 6V",
+                "Maximum current draw of 1A",
+                "Can power external boards directly"
+            ],
+            "price": 850
+        },
+        {
+            "id": 4,
+            "name": "CHHAVI - Flight Computer Kit",
+            "image": "https://drive.google.com/thumbnail?id=1JuBoyY9qLFzc6xdn6WGdTTWA8EeScDyo&sz=w1000",
+            "description": [
+                "Comes with 3 MCU and 4-stack PCB design",
+                "Unit 1: External communication module",
+                "Unit 2: Includes 5 sensors with sensor fusion capabilities",
+                "Unit 3: Main MCU for controlling the system",
+                "Unit 4: Power delivery system with Buck-Boost converter (output: 3.3V)"
+            ],
+            "price": 14000
+        }
+    ]
+}
