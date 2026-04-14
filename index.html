@@ -1,332 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beebotix — Coming Soon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0a0a0b;
+      font-family: 'Syne', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: clamp(1rem, 4vw, 2rem);
+    }
 
-  .root {
-    min-height: 600px;
-    background: #0a0a0b;
-    border-radius: 16px;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 3rem 2rem;
-    font-family: 'Syne', sans-serif;
-  }
+    .root {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 640px;
+      padding: clamp(2rem, 6vw, 4rem) clamp(1.25rem, 5vw, 2.5rem);
+      overflow: hidden;
+    }
 
-  .grid-bg {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-  .scan {
-    position: absolute;
-    left: 0; right: 0;
-    height: 120px;
-    background: linear-gradient(to bottom, transparent, rgba(255,200,0,0.04), transparent);
-    animation: scan 3.5s ease-in-out infinite;
-    pointer-events: none;
-  }
+    .scan {
+      position: fixed;
+      left: 0;
+      right: 0;
+      height: 140px;
+      background: linear-gradient(to bottom, transparent, rgba(255, 200, 0, 0.04), transparent);
+      animation: scan 3.5s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-  @keyframes scan {
-    0%   { top: -120px; }
-    100% { top: 100%; }
-  }
+    @keyframes scan {
+      0%   { top: -140px; }
+      100% { top: 100vh; }
+    }
 
-  .content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 560px;
-  }
+    .content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
 
-  .status-bar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
-    margin-bottom: 2.5rem;
-  }
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(9px, 2vw, 10px);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
 
-  .status-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #f59e0b;
-    animation: blink 1s step-end infinite;
-  }
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: #f59e0b;
+      animation: blink 1s step-end infinite;
+    }
 
-  @keyframes blink {
-    0%,100% { opacity:1; } 50% { opacity:0; }
-  }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
 
-  .brand {
-    font-size: 58px;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: #fff;
-    line-height: 1;
-    text-align: center;
-    margin-bottom: 0.5rem;
-    animation: fadein 0.8s ease both;
-  }
+    .brand {
+      font-size: clamp(40px, 13vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #fff;
+      line-height: 1;
+      text-align: center;
+      margin-bottom: 0.4rem;
+      animation: fadein 0.8s ease both;
+    }
 
-  .brand span { color: #f59e0b; }
+    .brand span {
+      color: #f59e0b;
+    }
 
-  @keyframes fadein {
-    from { opacity:0; transform: translateY(12px); }
-    to   { opacity:1; transform: translateY(0); }
-  }
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-  .tagline {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.25);
-    margin-bottom: 2.5rem;
-    animation: fadein 0.8s 0.15s ease both;
-  }
+    .tagline {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(9px, 2.5vw, 11px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.25);
+      margin-bottom: 2.5rem;
+      text-align: center;
+      animation: fadein 0.8s 0.15s ease both;
+    }
 
-  .divider {
-    width: 40px;
-    height: 1px;
-    background: rgba(255,255,255,0.1);
-    margin-bottom: 2rem;
-  }
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      margin-bottom: 1.75rem;
+    }
 
-  .headline {
-    font-size: 22px;
-    font-weight: 700;
-    color: #fff;
-    text-align: center;
-    margin-bottom: 0.75rem;
-    animation: fadein 0.8s 0.3s ease both;
-  }
+    .headline {
+      font-size: clamp(17px, 4.5vw, 24px);
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 0.75rem;
+      animation: fadein 0.8s 0.3s ease both;
+    }
 
-  .sub {
-    font-size: 14px;
-    color: rgba(255,255,255,0.4);
-    text-align: center;
-    line-height: 1.75;
-    max-width: 380px;
-    animation: fadein 0.8s 0.4s ease both;
-    margin-bottom: 2.5rem;
-  }
+    .sub {
+      font-size: clamp(13px, 3vw, 15px);
+      color: rgba(255, 255, 255, 0.4);
+      text-align: center;
+      line-height: 1.75;
+      max-width: 400px;
+      animation: fadein 0.8s 0.4s ease both;
+      margin-bottom: 2rem;
+    }
 
-  .sub strong {
-    color: rgba(255,255,255,0.75);
-    font-weight: 700;
-  }
+    .sub strong {
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 700;
+    }
 
-  .terminal {
-    width: 100%;
-    background: rgba(255,255,255,0.03);
-    border: 0.5px solid rgba(255,255,255,0.08);
-    border-radius: 10px;
-    padding: 1rem 1.25rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 11.5px;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 2rem;
-    animation: fadein 0.8s 0.5s ease both;
-    min-height: 120px;
-  }
+    .terminal {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 0.5px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: clamp(0.75rem, 3vw, 1rem) clamp(0.75rem, 3vw, 1.25rem);
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(10px, 2.5vw, 12px);
+      color: rgba(255, 255, 255, 0.35);
+      margin-bottom: 1.5rem;
+      animation: fadein 0.8s 0.5s ease both;
+      min-height: 115px;
+    }
 
-  .t-line {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 6px;
-    opacity: 0;
-    animation: line-in 0.3s ease forwards;
-  }
+    .t-line {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 7px;
+      opacity: 0;
+      animation: line-in 0.3s ease forwards;
+    }
 
-  .t-line:nth-child(1) { animation-delay: 1.0s; }
-  .t-line:nth-child(2) { animation-delay: 1.8s; }
-  .t-line:nth-child(3) { animation-delay: 2.6s; }
-  .t-line:nth-child(4) { animation-delay: 3.4s; }
-  .t-line:nth-child(5) { animation-delay: 4.2s; }
+    .t-line:nth-child(1) { animation-delay: 1.0s; }
+    .t-line:nth-child(2) { animation-delay: 1.8s; }
+    .t-line:nth-child(3) { animation-delay: 2.6s; }
+    .t-line:nth-child(4) { animation-delay: 3.4s; }
+    .t-line:nth-child(5) { animation-delay: 4.2s; }
 
-  @keyframes line-in {
-    from { opacity:0; transform: translateX(-4px); }
-    to   { opacity:1; transform: translateX(0); }
-  }
+    @keyframes line-in {
+      from { opacity: 0; transform: translateX(-4px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
 
-  .t-prompt { color: #f59e0b; flex-shrink: 0; }
-  .t-ok     { color: #4ade80; flex-shrink: 0; }
-  .t-warn   { color: #f59e0b; flex-shrink: 0; }
+    .t-prompt { color: #f59e0b; flex-shrink: 0; }
+    .t-ok     { color: #4ade80; flex-shrink: 0; }
+    .t-warn   { color: #f59e0b; flex-shrink: 0; }
 
-  .cursor {
-    display: inline-block;
-    width: 7px; height: 13px;
-    background: #f59e0b;
-    vertical-align: middle;
-    margin-left: 3px;
-    animation: cur 0.8s step-end infinite;
-    opacity: 0;
-    animation-delay: 5.2s;
-    animation-fill-mode: forwards;
-  }
+    .cursor {
+      display: inline-block;
+      width: 7px;
+      height: 13px;
+      background: #f59e0b;
+      vertical-align: middle;
+      margin-left: 3px;
+      opacity: 0;
+      animation: cur 0.8s step-end infinite;
+      animation-delay: 5s;
+      animation-fill-mode: forwards;
+    }
 
-  @keyframes cur {
-    0%,100% { opacity:1; } 50% { opacity:0; }
-  }
+    @keyframes cur {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
 
-  .launch-box {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    background: rgba(245, 158, 11, 0.07);
-    border: 0.5px solid rgba(245, 158, 11, 0.35);
-    border-radius: 10px;
-    padding: 1rem 1.5rem;
-    width: 100%;
-    animation: fadein 0.8s 0.6s ease both;
-  }
+    .launch-box {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      background: rgba(245, 158, 11, 0.07);
+      border: 0.5px solid rgba(245, 158, 11, 0.35);
+      border-radius: 10px;
+      padding: clamp(0.75rem, 3vw, 1rem) clamp(1rem, 4vw, 1.5rem);
+      width: 100%;
+      animation: fadein 0.8s 0.6s ease both;
+    }
 
-  .launch-left { flex: 1; }
+    .launch-left {
+      flex: 1;
+      min-width: 120px;
+    }
 
-  .launch-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
-    margin-bottom: 4px;
-  }
+    .launch-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+      margin-bottom: 4px;
+    }
 
-  .launch-date {
-    font-size: 28px;
-    font-weight: 800;
-    color: #f59e0b;
-    letter-spacing: -0.02em;
-    line-height: 1;
-  }
+    .launch-date {
+      font-size: clamp(22px, 6vw, 30px);
+      font-weight: 800;
+      color: #f59e0b;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
 
-  .launch-sub {
-    font-size: 12px;
-    color: rgba(255,255,255,0.3);
-    margin-top: 4px;
-    font-family: 'Space Mono', monospace;
-  }
+    .launch-sub {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.3);
+      margin-top: 4px;
+      font-family: 'Space Mono', monospace;
+    }
 
-  .countdown { display: flex; gap: 8px; }
+    .countdown {
+      display: flex;
+      gap: 6px;
+      flex-wrap: nowrap;
+    }
 
-  .cd-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: rgba(255,255,255,0.04);
-    border: 0.5px solid rgba(255,255,255,0.08);
-    border-radius: 6px;
-    padding: 6px 10px;
-    min-width: 44px;
-  }
+    .cd-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 0.5px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      padding: clamp(4px, 1.5vw, 8px) clamp(6px, 2vw, 12px);
+      min-width: clamp(38px, 10vw, 48px);
+    }
 
-  .cd-num {
-    font-family: 'Space Mono', monospace;
-    font-size: 18px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1;
-  }
+    .cd-num {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(15px, 4.5vw, 20px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
 
-  .cd-lbl {
-    font-family: 'Space Mono', monospace;
-    font-size: 9px;
-    color: rgba(255,255,255,0.25);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-top: 3px;
-  }
+    .cd-lbl {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(7px, 1.8vw, 9px);
+      color: rgba(255, 255, 255, 0.25);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+    }
 
-  .footer-note {
-    position: relative;
-    z-index: 2;
-    margin-top: 2rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    color: rgba(255,255,255,0.12);
-    letter-spacing: 0.1em;
-    text-align: center;
-  }
-</style>
+    .footer-note {
+      margin-top: 2rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.12);
+      letter-spacing: 0.1em;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
 
-<div class="root">
   <div class="grid-bg"></div>
   <div class="scan"></div>
 
-  <div class="content">
-    <div class="status-bar">
-      <div class="status-dot"></div>
-      System undergoing major overhaul
-    </div>
+  <div class="root">
+    <div class="content">
 
-    <div class="brand">Bee<span>botix</span></div>
-    <div class="tagline">robotics &middot; automation &middot; intelligence</div>
-
-    <div class="divider"></div>
-
-    <div class="headline">We are fixing things — big things.</div>
-
-    <p class="sub">
-      Beebotix is undergoing a <strong>huge transformation</strong>.<br>
-      New systems, new design, new everything.<br>
-      Come back on launch day.
-    </p>
-
-    <div class="terminal">
-      <div class="t-line"><span class="t-prompt">$</span><span>initializing rebuild sequence...</span></div>
-      <div class="t-line"><span class="t-warn">[warn]</span><span>old architecture deprecated</span></div>
-      <div class="t-line"><span class="t-ok">[ok]</span><span>new core systems loading</span></div>
-      <div class="t-line"><span class="t-ok">[ok]</span><span>design overhaul 94% complete</span></div>
-      <div class="t-line"><span class="t-prompt">$</span><span>awaiting launch date...<span class="cursor"></span></span></div>
-    </div>
-
-    <div class="launch-box">
-      <div class="launch-left">
-        <div class="launch-label">Coming soon</div>
-        <div class="launch-date">22 Apr 2025</div>
-        <div class="launch-sub">mark your calendar</div>
+      <div class="status-bar">
+        <div class="status-dot"></div>
+        System undergoing major overhaul
       </div>
-      <div class="countdown">
-        <div class="cd-item"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">days</div></div>
-        <div class="cd-item"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">hrs</div></div>
-        <div class="cd-item"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">min</div></div>
+
+      <div class="brand">Bee<span>botix</span></div>
+      <div class="tagline">robotics &middot; automation &middot; intelligence</div>
+
+      <div class="divider"></div>
+
+      <div class="headline">We are fixing things &mdash; big things.</div>
+
+      <p class="sub">
+        Beebotix is undergoing a <strong>huge transformation</strong>.<br>
+        New systems, new design, new everything.<br>
+        Come back on launch day.
+      </p>
+
+      <div class="terminal">
+        <div class="t-line"><span class="t-prompt">$</span><span>initializing rebuild sequence...</span></div>
+        <div class="t-line"><span class="t-warn">[warn]</span><span>old architecture deprecated</span></div>
+        <div class="t-line"><span class="t-ok">[ok]</span><span>new core systems loading</span></div>
+        <div class="t-line"><span class="t-ok">[ok]</span><span>design overhaul 94% complete</span></div>
+        <div class="t-line"><span class="t-prompt">$</span><span>awaiting launch date...<span class="cursor"></span></span></div>
       </div>
+
+      <div class="launch-box">
+        <div class="launch-left">
+          <div class="launch-label">Coming soon</div>
+          <div class="launch-date">22 Apr 2026</div>
+          <div class="launch-sub">mark your calendar</div>
+        </div>
+        <div class="countdown">
+          <div class="cd-item"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">days</div></div>
+          <div class="cd-item"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">hrs</div></div>
+          <div class="cd-item"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">min</div></div>
+          <div class="cd-item"><div class="cd-num" id="cd-s">--</div><div class="cd-lbl">sec</div></div>
+        </div>
+      </div>
+
     </div>
+
+    <div class="footer-note">beebotix.com &mdash; major update incoming</div>
   </div>
 
-  <div class="footer-note">beebotix.com &mdash; major update incoming</div>
-</div>
+  <script>
+    var target = new Date('2026-04-22T00:00:00').getTime();
 
-<script>
-  function tick() {
-    var target = new Date('2025-04-22T00:00:00');
-    var now = new Date();
-    var diff = target - now;
-    if (diff < 0) diff = 0;
-    var d = Math.floor(diff / 86400000);
-    var h = Math.floor((diff % 86400000) / 3600000);
-    var m = Math.floor((diff % 3600000) / 60000);
-    document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
-    document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
-    document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
-  }
-  tick();
-  setInterval(tick, 60000);
-</script>
+    function tick() {
+      var now = Date.now();
+      var diff = target - now;
+      if (diff < 0) diff = 0;
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cd-d').textContent = String(d).padStart(2, '0');
+      document.getElementById('cd-h').textContent = String(h).padStart(2, '0');
+      document.getElementById('cd-m').textContent = String(m).padStart(2, '0');
+      document.getElementById('cd-s').textContent = String(s).padStart(2, '0');
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  </script>
+
+</body>
+</html>
