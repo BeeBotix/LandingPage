@@ -1,387 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beebotix — Coming Soon</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      height: 100%;
-      width: 100%;
-    }
-
-    body {
-      background: #0a0a0b;
-      font-family: 'Syne', sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: clamp(1rem, 4vw, 2rem);
-    }
-
-    .root {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      max-width: 640px;
-      padding: clamp(2rem, 6vw, 4rem) clamp(1.25rem, 5vw, 2.5rem);
-      overflow: hidden;
-    }
-
-    .grid-bg {
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .scan {
-      position: fixed;
-      left: 0;
-      right: 0;
-      height: 140px;
-      background: linear-gradient(to bottom, transparent, rgba(255, 200, 0, 0.04), transparent);
-      animation: scan 3.5s ease-in-out infinite;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    @keyframes scan {
-      0%   { top: -140px; }
-      100% { top: 100vh; }
-    }
-
-    .content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-
-    .status-bar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Space Mono', monospace;
-      font-size: clamp(9px, 2vw, 10px);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.3);
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      flex-shrink: 0;
-      border-radius: 50%;
-      background: #f59e0b;
-      animation: blink 1s step-end infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0; }
-    }
-
-    .brand {
-      font-size: clamp(40px, 13vw, 64px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: #fff;
-      line-height: 1;
-      text-align: center;
-      margin-bottom: 0.4rem;
-      animation: fadein 0.8s ease both;
-    }
-
-    .brand span {
-      color: #f59e0b;
-    }
-
-    @keyframes fadein {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .tagline {
-      font-family: 'Space Mono', monospace;
-      font-size: clamp(9px, 2.5vw, 11px);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.25);
-      margin-bottom: 2.5rem;
-      text-align: center;
-      animation: fadein 0.8s 0.15s ease both;
-    }
-
-    .divider {
-      width: 40px;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.1);
-      margin-bottom: 1.75rem;
-    }
-
-    .headline {
-      font-size: clamp(17px, 4.5vw, 24px);
-      font-weight: 700;
-      color: #fff;
-      text-align: center;
-      margin-bottom: 0.75rem;
-      animation: fadein 0.8s 0.3s ease both;
-    }
-
-    .sub {
-      font-size: clamp(13px, 3vw, 15px);
-      color: rgba(255, 255, 255, 0.4);
-      text-align: center;
-      line-height: 1.75;
-      max-width: 400px;
-      animation: fadein 0.8s 0.4s ease both;
-      margin-bottom: 2rem;
-    }
-
-    .sub strong {
-      color: rgba(255, 255, 255, 0.8);
-      font-weight: 700;
-    }
-
-    .terminal {
-      width: 100%;
-      background: rgba(255, 255, 255, 0.03);
-      border: 0.5px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      padding: clamp(0.75rem, 3vw, 1rem) clamp(0.75rem, 3vw, 1.25rem);
-      font-family: 'Space Mono', monospace;
-      font-size: clamp(10px, 2.5vw, 12px);
-      color: rgba(255, 255, 255, 0.35);
-      margin-bottom: 1.5rem;
-      animation: fadein 0.8s 0.5s ease both;
-      min-height: 115px;
-    }
-
-    .t-line {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 7px;
-      opacity: 0;
-      animation: line-in 0.3s ease forwards;
-    }
-
-    .t-line:nth-child(1) { animation-delay: 1.0s; }
-    .t-line:nth-child(2) { animation-delay: 1.8s; }
-    .t-line:nth-child(3) { animation-delay: 2.6s; }
-    .t-line:nth-child(4) { animation-delay: 3.4s; }
-    .t-line:nth-child(5) { animation-delay: 4.2s; }
-
-    @keyframes line-in {
-      from { opacity: 0; transform: translateX(-4px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-
-    .t-prompt { color: #f59e0b; flex-shrink: 0; }
-    .t-ok     { color: #4ade80; flex-shrink: 0; }
-    .t-warn   { color: #f59e0b; flex-shrink: 0; }
-
-    .cursor {
-      display: inline-block;
-      width: 7px;
-      height: 13px;
-      background: #f59e0b;
-      vertical-align: middle;
-      margin-left: 3px;
-      opacity: 0;
-      animation: cur 0.8s step-end infinite;
-      animation-delay: 5s;
-      animation-fill-mode: forwards;
-    }
-
-    @keyframes cur {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0; }
-    }
-
-    .launch-box {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 16px;
-      background: rgba(245, 158, 11, 0.07);
-      border: 0.5px solid rgba(245, 158, 11, 0.35);
-      border-radius: 10px;
-      padding: clamp(0.75rem, 3vw, 1rem) clamp(1rem, 4vw, 1.5rem);
-      width: 100%;
-      animation: fadein 0.8s 0.6s ease both;
-    }
-
-    .launch-left {
-      flex: 1;
-      min-width: 120px;
-    }
-
-    .launch-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.3);
-      margin-bottom: 4px;
-    }
-
-    .launch-date {
-      font-size: clamp(22px, 6vw, 30px);
-      font-weight: 800;
-      color: #f59e0b;
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
-
-    .launch-sub {
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.3);
-      margin-top: 4px;
-      font-family: 'Space Mono', monospace;
-    }
-
-    .countdown {
-      display: flex;
-      gap: 6px;
-      flex-wrap: nowrap;
-    }
-
-    .cd-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.04);
-      border: 0.5px solid rgba(255, 255, 255, 0.08);
-      border-radius: 6px;
-      padding: clamp(4px, 1.5vw, 8px) clamp(6px, 2vw, 12px);
-      min-width: clamp(38px, 10vw, 48px);
-    }
-
-    .cd-num {
-      font-family: 'Space Mono', monospace;
-      font-size: clamp(15px, 4.5vw, 20px);
-      font-weight: 700;
-      color: #fff;
-      line-height: 1;
-    }
-
-    .cd-lbl {
-      font-family: 'Space Mono', monospace;
-      font-size: clamp(7px, 1.8vw, 9px);
-      color: rgba(255, 255, 255, 0.25);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-top: 4px;
-    }
-
-    .footer-note {
-      margin-top: 2rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      color: rgba(255, 255, 255, 0.12);
-      letter-spacing: 0.1em;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-  </style>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BeeBotix — Build The Machine You Imagined</title>
+<meta name="description" content="BeeBotix builds modular robotic platforms for any application. MSME Registered, Bengaluru, India."/>
+<meta name="author" content="BeeBotix"/>
+<meta property="og:title" content="BeeBotix — Build The Machine You Imagined"/>
+<meta property="og:url" content="https://beebotix.github.io"/>
+<link rel="canonical" href="https://beebotix.github.io"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Press+Start+2P&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/>
+<script>window.BB={"site":{"name":"BeeBotix","slogan":"Build The Machine You Imagined.","tagline":"Robotics-as-a-Service. Modular. Scalable. Any Application.","msme":"MSME Registered Company \u2014 India","founded":"2024","location":"Bengaluru, India","contact":{"email":"contact@beebotix.com","github":"https://github.com/beebotix"},"social":{"instagram":"https://instagram.com/beebotix","x":"https://x.com/beebotix","facebook":"https://facebook.com/beebotix","youtube":"https://youtube.com/@beebotix","linkedin":"https://linkedin.com/company/beebotix"}},"nav":[{"label":"About","href":"#about","external":false},{"label":"Platform","href":"#platform","external":false},{"label":"Brands","href":"#brands","external":false},{"label":"Catalog","href":"https://catalog.beebotix.com","external":true},{"label":"Blog","href":"https://blog.beebotix.com","external":true},{"label":"Contact","href":"#contact","external":false}],"hero":{"badge":"MSME Registered \u00b7 RaaS \u00b7 OEM \u00b7 Modular","slogan":"Build The Machine\nYou Imagined.","sub":"BeeBotix builds modular robotic platforms for any application \u2014 off-the-shelf from our catalog, or engineered to your exact specification.","cta_primary":{"label":"View Catalog","href":"https://catalog.beebotix.com"},"cta_secondary":{"label":"Talk to Us","href":"#contact"},"scroll_label":"Scroll to explore"},"about":{"headline":"We Don't Sell Robots.\nWe Deliver Capability.","body":"BeeBotix builds modular robotic platforms for OEMs, operators, and innovators. We don't specialise in one application or one environment \u2014 we build the mechanical and electronic substrate, and you bring the use case. Our platforms are designed to be reconfigured: swap locomotion, sensors, compute, and control surfaces without starting from scratch.","edge_ai":{"headline":"Carry the Edge AI Machine\nin Your Pocket.","body":"Every BeeBotix platform is architected to carry on-device intelligence. We're building toward robots that think locally \u2014 perception, decision, and control running on the machine itself, not in the cloud. This is the architecture direction we're building toward."},"stats":[{"value":"3","label":"Active Brands"},{"value":"OEM","label":"Primary Focus"},{"value":"RaaS","label":"Business Model"},{"value":"MOD","label":"Architecture"}]},"platform":{"label":"What We Build","headline":"Any Robot.\nAny Application.","sub":"Tell us what you need to accomplish. We'll build the machine that does it.","offerings":[{"index":"01","title":"Modular Platforms","tagline":"Reconfigure. Redeploy. Repeat.","description":"Our standard platform line covers a range of form factors. Each ships with standardised mechanical and electrical interfaces so you can swap modules, add payloads, or change locomotion without redesigning the core. OEMs take these as a base and build their product on top.","cta":null,"tags":["OEM-ready","Hot-swap Modules","Sensor-agnostic","Rental Available"]},{"index":"02","title":"Custom Builds","tagline":"You Imagine. We Engineer.","description":"If your use case doesn't fit a standard platform, we'll build to spec. Share your application, environment, payload, and constraints \u2014 we'll scope a custom robot around it. Custom builds are available for OEM partners and operators with defined deployment requirements.","cta":{"label":"Get in Touch","href":"#contact","external":false},"tags":["Custom Form Factor","Bespoke Sensors","Application-specific","OEM Branding"]},{"index":"03","title":"From the Catalog","tagline":"Existing Platforms. Ready to Deploy.","description":"Browse our existing robot lineup \u2014 platforms that are already designed, tested, and available on rental or operational basis. If you see something that fits your application, it ships faster. If it's close but not quite right, we can adapt it.","cta":{"label":"Browse Catalog","href":"https://catalog.beebotix.com","external":true},"tags":["Ready to Ship","Rental Available","Operational Basis","Adaptable"]}]},"brands":[{"id":"kamakiri","name":"KAMAKIRI","tagline":"Precision at the Edge.","sector":"Military / Industrial","url":"https://kamakiri.beebotix.com","subdomain":"kamakiri.beebotix.com","description":"KAMAKIRI builds robotic systems for high-stakes environments where failure is not an option. Ruggedised platforms for defence, border surveillance, hazmat, and heavy industry.","keywords":["Ruggedised","Defence-grade","Autonomous","Surveillance"]},{"id":"sparkplug","name":"Spark Plug","tagline":"Robots That Start Conversations.","sector":"B2C / Consumer","url":"https://sparkplug.beebotix.com","subdomain":"sparkplug.beebotix.com","description":"Spark Plug puts robots where people are. Photobooths, food delivery, interactive kiosks \u2014 machines that earn their keep in footfall and become instant social media moments.","keywords":["Photobooth","Food Delivery","Rental","Consumer"]},{"id":"hopefor0b001","name":"HopeFor0b001","tagline":"Open Hardware. Open Minds.","sector":"Education / Community","url":"https://hopefor0b001.beebotix.com","subdomain":"hopefor0b001.beebotix.com","description":"HopeFor0b001 is the educational arm of BeeBotix. Kits, curriculum, and community for students, makers, and geeks who want to understand robotics from first principles.","keywords":["Open Source","Students","Kits","Maker"]}],"faq":[{"q":"What kind of robots does BeeBotix build?","a":"We build general-purpose modular robotic platforms \u2014 we don't specialise in one environment or application. Our platforms can be adapted for any use case. Browse our catalog to see existing platforms, or get in touch to discuss a custom build."},{"q":"How does the RaaS model work?","a":"Robotics-as-a-Service means you don't have to buy the robot outright. You can access our platforms on a rental, operational, or revenue-share basis depending on your use case. This lowers the entry barrier for deploying robotics without heavy capex."},{"q":"Can BeeBotix build a robot for my specific application?","a":"Yes. If our catalog platforms don't fit your use case, we'll build to specification. Share your application, environment, payload requirements, and constraints \u2014 we'll scope a custom build around it."},{"q":"I'm an OEM. How does the platform work for me?","a":"OEMs take our modular base platform and build their product on top. You get the mechanical structure, electrical interfaces, compute stack, and locomotion \u2014 we handle the robot substrate, you focus on your application layer and branding."},{"q":"What is KAMAKIRI / Spark Plug / HopeFor0b001?","a":"These are BeeBotix's three subsidiary brands, each focused on a different market \u2014 KAMAKIRI for defence and industrial applications, Spark Plug for B2C consumer robotics on a rental/revenue basis, and HopeFor0b001 for education and the maker community."},{"q":"Is BeeBotix a registered company?","a":"Yes. BeeBotix is an MSME-registered company based in Bengaluru, India."}],"footer":{"support":[{"label":"Help Center","href":"https://help.beebotix.com"},{"label":"Forum","href":"https://forum.beebotix.com"},{"label":"Hire Us","href":"#contact"},{"label":"Developer Blog","href":"https://blog.beebotix.com"},{"label":"Developer Platform","href":"https://dev.beebotix.com"},{"label":"System Status","href":"https://status.beebotix.com"}],"solutions":[{"label":"Modular Platforms","href":"#platform"},{"label":"Custom Builds","href":"#contact"},{"label":"Catalog","href":"https://catalog.beebotix.com"},{"label":"OEM Partnership","href":"#contact"},{"label":"RaaS","href":"#platform"}],"company":[{"label":"About","href":"#about"},{"label":"Brands","href":"#brands"},{"label":"Blog","href":"https://blog.beebotix.com"},{"label":"GitHub","href":"https://github.com/beebotix"},{"label":"Contact","href":"#contact"}],"legal":[{"label":"Terms of Service","href":"pages/terms.html"},{"label":"Privacy Policy","href":"pages/privacy.html"},{"label":"Sitemap","href":"pages/sitemap.html"}]},"contact":{"headline":"Let's Build Together.","body":"Whether you're an OEM looking for a robotic base, an operator exploring RaaS, or a student building for the first time \u2014 we want to hear from you.","form_fields":[{"name":"name","label":"Your Name","type":"text","required":true},{"name":"email","label":"Email Address","type":"email","required":true},{"name":"type","label":"I am a...","type":"select","required":false,"options":["OEM Partner","RaaS Operator","Investor","Student / Maker","Other"]},{"name":"message","label":"Tell us what you need","type":"textarea","required":true}]},"gallery":{"label":"Catalog Preview","headline":"Built.\nDeployed.\nOperating.","sub":"A snapshot of platforms, deployments, and builds. Full catalog at catalog.beebotix.com","cta":{"label":"Browse Full Catalog","href":"https://catalog.beebotix.com"},"items":[{"id":"g1","title":"Industrial Inspection Platform","caption":"Modular UGV base \u2014 wheeled, sensor-ready, OEM-adaptable","category":"Land / OEM","img":"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80&auto=format&fit=crop","link":"https://catalog.beebotix.com"},{"id":"g2","title":"Autonomous Navigation Stack","caption":"Edge compute + sensor fusion \u2014 no cloud dependency","category":"Edge AI","img":"https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&q=80&auto=format&fit=crop","link":"https://catalog.beebotix.com"},{"id":"g3","title":"Spark Plug Photobooth Unit","caption":"B2C revenue-generating robot \u2014 rental / revenue-share model","category":"Consumer / B2C","img":"https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80&auto=format&fit=crop","link":"https://sparkplug.beebotix.com"},{"id":"g4","title":"Subsurface Survey ROV","caption":"Tethered underwater platform \u2014 hull inspection, pipeline monitoring","category":"Underwater","img":"https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80&auto=format&fit=crop","link":"https://catalog.beebotix.com"},{"id":"g5","title":"KAMAKIRI Border Scout","caption":"Ruggedised perimeter patrol \u2014 defence-grade, all-terrain","category":"Military / Industrial","img":"https://images.unsplash.com/photo-1563207153-f403bf289096?w=800&q=80&auto=format&fit=crop","link":"https://kamakiri.beebotix.com"},{"id":"g6","title":"HopeFor0b001 Dev Kit","caption":"Open-hardware student kit \u2014 assemble, program, deploy","category":"Education","img":"https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80&auto=format&fit=crop","link":"https://hopefor0b001.beebotix.com"}]},"ascii_art":{"platform_cards":[{"id":"land_vehicle","label":"UGV in motion","art":"   _____\n  /|    |\\ \n / | [] | \\\n/__|____|__\\\n  O      O"},{"id":"underwater_rov","label":"ROV diving","art":"    ~~~~~\n   [=(O)=]\n    ||||||\n   [_____]"},{"id":"aerial_drone","label":"UAV airborne","art":" x     x\n  \\   /\n   [-O-]\n  /   \\\n x     x"}]}};</script>
 </head>
 <body>
 
-  <div class="grid-bg"></div>
-  <div class="scan"></div>
 
-  <div class="root">
-    <div class="content">
-
-      <div class="status-bar">
-        <div class="status-dot"></div>
-        System undergoing major overhaul
-      </div>
-
-      <div class="brand">Bee<span>botix</span></div>
-      <div class="tagline">robotics &middot; automation &middot; intelligence</div>
-
-      <div class="divider"></div>
-
-      <div class="headline">We are fixing things &mdash; big things.</div>
-
-      <p class="sub">
-        Beebotix is undergoing a <strong>huge transformation</strong>.<br>
-        New systems, new design, new everything.<br>
-        Come back on launch day.
-      </p>
-
-      <div class="terminal">
-        <div class="t-line"><span class="t-prompt">$</span><span>initializing rebuild sequence...</span></div>
-        <div class="t-line"><span class="t-warn">[warn]</span><span>old architecture deprecated</span></div>
-        <div class="t-line"><span class="t-ok">[ok]</span><span>new core systems loading</span></div>
-        <div class="t-line"><span class="t-ok">[ok]</span><span>design overhaul 94% complete</span></div>
-        <div class="t-line"><span class="t-prompt">$</span><span>awaiting launch date...<span class="cursor"></span></span></div>
-      </div>
-
-      <div class="launch-box">
-        <div class="launch-left">
-          <div class="launch-label">Coming soon</div>
-          <div class="launch-date">22 Apr 2026</div>
-          <div class="launch-sub">mark your calendar</div>
-        </div>
-        <div class="countdown">
-          <div class="cd-item"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">days</div></div>
-          <div class="cd-item"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">hrs</div></div>
-          <div class="cd-item"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">min</div></div>
-          <div class="cd-item"><div class="cd-num" id="cd-s">--</div><div class="cd-lbl">sec</div></div>
-        </div>
-      </div>
-
+<!-- NOTIFICATION BAR — reads notification.json, shows active messages as infinite marquee -->
+<div id="notif-bar" class="notif-bar" style="display:none;" role="alert" aria-live="polite">
+  <div class="notif-marquee-wrap">
+    <div class="notif-marquee-track" id="notif-track">
+      <!-- filled by JS -->
     </div>
-
-    <div class="footer-note">beebotix.com &mdash; major update incoming</div>
   </div>
+  <button class="notif-close" id="notif-close" aria-label="Dismiss notification">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+</div>
 
-  <script>
-    var target = new Date('2026-04-22T00:00:00').getTime();
+<div class="scroll-bar" id="scroll-bar"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
 
-    function tick() {
-      var now = Date.now();
-      var diff = target - now;
-      if (diff < 0) diff = 0;
-      var d = Math.floor(diff / 86400000);
-      var h = Math.floor((diff % 86400000) / 3600000);
-      var m = Math.floor((diff % 3600000) / 60000);
-      var s = Math.floor((diff % 60000) / 1000);
-      document.getElementById('cd-d').textContent = String(d).padStart(2, '0');
-      document.getElementById('cd-h').textContent = String(h).padStart(2, '0');
-      document.getElementById('cd-m').textContent = String(m).padStart(2, '0');
-      document.getElementById('cd-s').textContent = String(s).padStart(2, '0');
-    }
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#hero">
+    <img src="beebotix-logo.svg" alt="BeeBotix" class="nav-logo-img"
+      onerror="this.style.display='none';document.getElementById('nav-fb').style.display='flex';"/>
+    <span id="nav-fb" class="nav-fb">
+      <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
+        <rect x="12" y="2" width="4" height="4" fill="#f4f4ef"/><rect x="8" y="4" width="4" height="4" fill="#f4f4ef"/>
+        <rect x="16" y="4" width="4" height="4" fill="#f4f4ef"/><rect x="6" y="8" width="16" height="4" fill="#f4f4ef"/>
+        <rect x="4" y="10" width="4" height="4" fill="#f4f4ef"/><rect x="20" y="10" width="4" height="4" fill="#f4f4ef"/>
+        <rect x="6" y="12" width="16" height="4" fill="#f4f4ef"/><rect x="8" y="16" width="12" height="4" fill="#f4f4ef"/>
+        <rect x="10" y="20" width="8" height="4" fill="#f4f4ef"/>
+        <rect x="12" y="24" width="4" height="2" fill="#888"/><rect x="13" y="26" width="2" height="2" fill="#888"/>
+      </svg>
+      <span class="nav-wordmark">BeeBotix</span>
+      <span class="nav-ver">v1.0</span>
+    </span>
+  </a>
+  <ul class="nav-links" id="nav-list"></ul>
+  <a class="nav-cta" href="#contact">Get in Touch</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-    tick();
-    setInterval(tick, 1000);
-  </script>
+<div class="nav-overlay" id="nav-overlay" role="navigation" aria-label="Mobile navigation">
+  <button class="nav-overlay-close" id="nav-overlay-close" aria-label="Close menu">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+  <ul id="nav-overlay-list"></ul>
+</div>
 
+<!-- HERO -->
+<section id="hero">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <p class="hero-badge" id="hero-badge">RaaS / OEM / Modular</p>
+    <h1 class="hero-headline" id="hero-headline">Build The<br><em>Machine You</em><br>Imagined.</h1>
+    <p class="hero-sub" id="hero-sub">BeeBotix builds modular robotic platforms for any application.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="https://catalog.beebotix.com" target="_blank" rel="noopener">View Catalog</a>
+      <a class="btn-ghost" href="#contact">Talk to Us</a>
+    </div>
+  </div>
+  <!-- ASCII bee silhouette density art - dark red, bottom-right of hero -->
+  <div class="ascii-hero" id="ascii-hero" aria-hidden="true"></div>
+  <div class="hero-hint" aria-hidden="true"><span class="hint-dot"></span><span>Scroll to explore</span></div>
+  <div class="hero-year" id="hero-year" aria-hidden="true">2025</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track" id="marquee-track">
+    <div class="marquee-row">
+      <span>Build The Machine You Imagined</span><b>&nbsp;·&nbsp;</b>
+      <span>Modular Platforms</span><b>&nbsp;·&nbsp;</b>
+      <span>Custom Builds</span><b>&nbsp;·&nbsp;</b>
+      <span>OEM-Ready</span><b>&nbsp;·&nbsp;</b>
+      <span>Any Application</span><b>&nbsp;·&nbsp;</b>
+      <span>KAMAKIRI</span><b>&nbsp;·&nbsp;</b>
+      <span>Spark Plug</span><b>&nbsp;·&nbsp;</b>
+      <span>HopeFor0b001</span><b>&nbsp;·&nbsp;</b>
+      <span>MSME Registered</span><b>&nbsp;·&nbsp;</b>
+      <span>Built in Bengaluru</span><b>&nbsp;·&nbsp;</b>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-left">
+        <p class="section-label">About BeeBotix</p>
+        <h2 class="about-headline" id="about-headline">We Don't Sell Robots.<br>We Deliver Capability.</h2>
+        <p class="about-body" id="about-body"></p>
+        <div class="stats-row" id="stats-grid"></div>
+      </div>
+      <div class="about-right">
+        <div class="edge-block">
+          <p class="edge-label">Edge AI Direction</p>
+          <h3 class="edge-headline" id="edge-headline">Carry the Edge AI<br>in Your Pocket.</h3>
+          <p class="edge-body" id="edge-body"></p>
+          <!-- CPU/chip density art - subtle white, inside edge AI block -->
+          <div class="ascii-chip" id="ascii-chip" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section id="platform">
+  <div class="container">
+    <div class="platform-top">
+      <div>
+        <p class="section-label" id="platform-label">What We Build</p>
+        <h2 class="section-headline" id="platform-headline">Any Robot.<br>Any Application.</h2>
+      </div>
+      <p class="platform-sub" id="platform-sub">Tell us what you need. We'll build the machine.</p>
+    </div>
+    <!-- Offering cards with contextual ASCII art per card -->
+    <div class="offerings-grid" id="offerings-grid"></div>
+  </div>
+</section>
+
+<!-- GALLERY — 3D spiral scroll animation -->
+<section id="gallery">
+  <div class="container">
+    <div class="gallery-top">
+      <div>
+        <p class="section-label" id="gallery-label">Catalog Preview</p>
+        <h2 class="section-headline" id="gallery-headline"></h2>
+      </div>
+      <div class="gallery-top-right">
+        <p class="gallery-sub" id="gallery-sub"></p>
+        <a class="btn-ghost gallery-cta" id="gallery-cta" href="https://catalog.beebotix.com" target="_blank" rel="noopener">Browse Full Catalog</a>
+      </div>
+    </div>
+  </div>
+  <!-- Sticky scroll driver — the tall container makes scroll feel like 3D rotation -->
+  <div class="gallery-scroll-driver" id="gallery-scroll-driver">
+    <div class="gallery-sticky">
+      <div class="gallery-stage" id="gallery-stage">
+        <div class="gallery-ring" id="gallery-ring">
+          <!-- Cards injected by JS -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section id="brands">
+  <canvas id="brands-canvas" aria-hidden="true"></canvas>
+  <div class="container brands-z">
+    <div class="brands-top">
+      <p class="section-label">Subsidiary Brands</p>
+      <h2 class="section-headline">One company.<br>Three fronts.</h2>
+    </div>
+    <div class="brands-list" id="brands-list"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-top">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-headline">Common Questions.</h2>
+    </div>
+    <div class="faq-list" id="faq-list"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <p class="section-label">Contact</p>
+        <h2 class="contact-headline" id="contact-headline">Let's Build Together.</h2>
+        <p class="contact-body" id="contact-body"></p>
+        <div class="contact-meta">
+          <a href="mailto:contact@beebotix.com" class="meta-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            contact@beebotix.com
+          </a>
+          <span class="meta-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Bengaluru, India
+          </span>
+          <a href="https://github.com/beebotix" target="_blank" rel="noopener" class="meta-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            github.com/beebotix
+          </a>
+        </div>
+      </div>
+      <form class="contact-form" id="contact-form" novalidate>
+        <div id="form-fields"></div>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary form-btn">Send Message</button>
+          <p class="form-note" id="form-note">We respond within 48 hours.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <img src="beebotix-logo.svg" alt="BeeBotix" class="footer-logo-img"
+            onerror="this.style.display='none';document.getElementById('footer-fb').style.display='flex';"/>
+          <span id="footer-fb" class="footer-fb">
+            <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+              <rect x="12" y="2" width="4" height="4" fill="#555"/><rect x="8" y="4" width="4" height="4" fill="#555"/>
+              <rect x="16" y="4" width="4" height="4" fill="#555"/><rect x="6" y="8" width="16" height="4" fill="#555"/>
+              <rect x="4" y="10" width="4" height="4" fill="#555"/><rect x="20" y="10" width="4" height="4" fill="#555"/>
+              <rect x="6" y="12" width="16" height="4" fill="#555"/><rect x="8" y="16" width="12" height="4" fill="#555"/>
+              <rect x="10" y="20" width="8" height="4" fill="#555"/>
+            </svg>
+            <span class="footer-wordmark-sm">BeeBotix</span>
+          </span>
+        </div>
+        <p class="footer-slogan">Build The Machine You Imagined.</p>
+        <p class="footer-msme">MSME Registered · Bengaluru, India</p>
+        <div class="footer-social" id="footer-social"></div>
+      </div>
+      <div class="footer-col"><p class="footer-col-title">Support</p><ul id="footer-support"></ul></div>
+      <div class="footer-col"><p class="footer-col-title">Solutions</p><ul id="footer-solutions"></ul></div>
+      <div class="footer-col"><p class="footer-col-title">Company</p><ul id="footer-company"></ul></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p class="footer-copy">&copy; 2024&ndash;2026 BeeBotix. All rights reserved.</p>
+      <ul class="footer-legal" id="footer-legal"></ul>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/main.js"></script>
+<!-- Gallery center label — outside ALL sections so position:fixed works -->
+<div class="gallery-center-label" id="gallery-center-label" aria-live="polite" aria-atomic="true">
+  <p class="gallery-center-text" id="gallery-center-text"></p>
+  <p class="gallery-center-sub" id="gallery-center-sub"></p>
+</div>
 </body>
 </html>

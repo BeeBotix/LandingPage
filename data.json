@@ -1,0 +1,421 @@
+{
+  "site": {
+    "name": "BeeBotix",
+    "slogan": "Build The Machine You Imagined.",
+    "tagline": "Robotics-as-a-Service. Modular. Scalable. Any Application.",
+    "msme": "MSME Registered Company — India",
+    "founded": "2024",
+    "location": "Bengaluru, India",
+    "contact": {
+      "email": "contact@beebotix.com",
+      "github": "https://github.com/beebotix"
+    },
+    "social": {
+      "instagram": "https://instagram.com/beebotix",
+      "x": "https://x.com/beebotix",
+      "facebook": "https://facebook.com/beebotix",
+      "youtube": "https://youtube.com/@beebotix",
+      "linkedin": "https://linkedin.com/company/beebotix"
+    }
+  },
+  "nav": [
+    {
+      "label": "About",
+      "href": "#about",
+      "external": false
+    },
+    {
+      "label": "Platform",
+      "href": "#platform",
+      "external": false
+    },
+    {
+      "label": "Brands",
+      "href": "#brands",
+      "external": false
+    },
+    {
+      "label": "Catalog",
+      "href": "https://catalog.beebotix.com",
+      "external": true
+    },
+    {
+      "label": "Blog",
+      "href": "https://blog.beebotix.com",
+      "external": true
+    },
+    {
+      "label": "Contact",
+      "href": "#contact",
+      "external": false
+    }
+  ],
+  "hero": {
+    "badge": "MSME Registered · RaaS · OEM · Modular",
+    "slogan": "Build The Machine\nYou Imagined.",
+    "sub": "BeeBotix builds modular robotic platforms for any application — off-the-shelf from our catalog, or engineered to your exact specification.",
+    "cta_primary": {
+      "label": "View Catalog",
+      "href": "https://catalog.beebotix.com"
+    },
+    "cta_secondary": {
+      "label": "Talk to Us",
+      "href": "#contact"
+    },
+    "scroll_label": "Scroll to explore"
+  },
+  "about": {
+    "headline": "We Don't Sell Robots.\nWe Deliver Capability.",
+    "body": "BeeBotix builds modular robotic platforms for OEMs, operators, and innovators. We don't specialise in one application or one environment — we build the mechanical and electronic substrate, and you bring the use case. Our platforms are designed to be reconfigured: swap locomotion, sensors, compute, and control surfaces without starting from scratch.",
+    "edge_ai": {
+      "headline": "Carry the Edge AI Machine\nin Your Pocket.",
+      "body": "Every BeeBotix platform is architected to carry on-device intelligence. We're building toward robots that think locally — perception, decision, and control running on the machine itself, not in the cloud. This is the architecture direction we're building toward."
+    },
+    "stats": [
+      {
+        "value": "3",
+        "label": "Active Brands"
+      },
+      {
+        "value": "OEM",
+        "label": "Primary Focus"
+      },
+      {
+        "value": "RaaS",
+        "label": "Business Model"
+      },
+      {
+        "value": "MOD",
+        "label": "Architecture"
+      }
+    ]
+  },
+  "platform": {
+    "label": "What We Build",
+    "headline": "Any Robot.\nAny Application.",
+    "sub": "Tell us what you need to accomplish. We'll build the machine that does it.",
+    "offerings": [
+      {
+        "index": "01",
+        "title": "Modular Platforms",
+        "tagline": "Reconfigure. Redeploy. Repeat.",
+        "description": "Our standard platform line covers a range of form factors. Each ships with standardised mechanical and electrical interfaces so you can swap modules, add payloads, or change locomotion without redesigning the core. OEMs take these as a base and build their product on top.",
+        "cta": null,
+        "tags": [
+          "OEM-ready",
+          "Hot-swap Modules",
+          "Sensor-agnostic",
+          "Rental Available"
+        ]
+      },
+      {
+        "index": "02",
+        "title": "Custom Builds",
+        "tagline": "You Imagine. We Engineer.",
+        "description": "If your use case doesn't fit a standard platform, we'll build to spec. Share your application, environment, payload, and constraints — we'll scope a custom robot around it. Custom builds are available for OEM partners and operators with defined deployment requirements.",
+        "cta": {
+          "label": "Get in Touch",
+          "href": "#contact",
+          "external": false
+        },
+        "tags": [
+          "Custom Form Factor",
+          "Bespoke Sensors",
+          "Application-specific",
+          "OEM Branding"
+        ]
+      },
+      {
+        "index": "03",
+        "title": "From the Catalog",
+        "tagline": "Existing Platforms. Ready to Deploy.",
+        "description": "Browse our existing robot lineup — platforms that are already designed, tested, and available on rental or operational basis. If you see something that fits your application, it ships faster. If it's close but not quite right, we can adapt it.",
+        "cta": {
+          "label": "Browse Catalog",
+          "href": "https://catalog.beebotix.com",
+          "external": true
+        },
+        "tags": [
+          "Ready to Ship",
+          "Rental Available",
+          "Operational Basis",
+          "Adaptable"
+        ]
+      }
+    ]
+  },
+  "brands": [
+    {
+      "id": "kamakiri",
+      "name": "KAMAKIRI",
+      "tagline": "Precision at the Edge.",
+      "sector": "Military / Industrial",
+      "url": "https://kamakiri.beebotix.com",
+      "subdomain": "kamakiri.beebotix.com",
+      "description": "KAMAKIRI builds robotic systems for high-stakes environments where failure is not an option. Ruggedised platforms for defence, border surveillance, hazmat, and heavy industry.",
+      "keywords": [
+        "Ruggedised",
+        "Defence-grade",
+        "Autonomous",
+        "Surveillance"
+      ]
+    },
+    {
+      "id": "sparkplug",
+      "name": "Spark Plug",
+      "tagline": "Robots That Start Conversations.",
+      "sector": "B2C / Consumer",
+      "url": "https://sparkplug.beebotix.com",
+      "subdomain": "sparkplug.beebotix.com",
+      "description": "Spark Plug puts robots where people are. Photobooths, food delivery, interactive kiosks — machines that earn their keep in footfall and become instant social media moments.",
+      "keywords": [
+        "Photobooth",
+        "Food Delivery",
+        "Rental",
+        "Consumer"
+      ]
+    },
+    {
+      "id": "hopefor0b001",
+      "name": "HopeFor0b001",
+      "tagline": "Open Hardware. Open Minds.",
+      "sector": "Education / Community",
+      "url": "https://hopefor0b001.beebotix.com",
+      "subdomain": "hopefor0b001.beebotix.com",
+      "description": "HopeFor0b001 is the educational arm of BeeBotix. Kits, curriculum, and community for students, makers, and geeks who want to understand robotics from first principles.",
+      "keywords": [
+        "Open Source",
+        "Students",
+        "Kits",
+        "Maker"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What kind of robots does BeeBotix build?",
+      "a": "We build general-purpose modular robotic platforms — we don't specialise in one environment or application. Our platforms can be adapted for any use case. Browse our catalog to see existing platforms, or get in touch to discuss a custom build."
+    },
+    {
+      "q": "How does the RaaS model work?",
+      "a": "Robotics-as-a-Service means you don't have to buy the robot outright. You can access our platforms on a rental, operational, or revenue-share basis depending on your use case. This lowers the entry barrier for deploying robotics without heavy capex."
+    },
+    {
+      "q": "Can BeeBotix build a robot for my specific application?",
+      "a": "Yes. If our catalog platforms don't fit your use case, we'll build to specification. Share your application, environment, payload requirements, and constraints — we'll scope a custom build around it."
+    },
+    {
+      "q": "I'm an OEM. How does the platform work for me?",
+      "a": "OEMs take our modular base platform and build their product on top. You get the mechanical structure, electrical interfaces, compute stack, and locomotion — we handle the robot substrate, you focus on your application layer and branding."
+    },
+    {
+      "q": "What is KAMAKIRI / Spark Plug / HopeFor0b001?",
+      "a": "These are BeeBotix's three subsidiary brands, each focused on a different market — KAMAKIRI for defence and industrial applications, Spark Plug for B2C consumer robotics on a rental/revenue basis, and HopeFor0b001 for education and the maker community."
+    },
+    {
+      "q": "Is BeeBotix a registered company?",
+      "a": "Yes. BeeBotix is an MSME-registered company based in Bengaluru, India."
+    }
+  ],
+  "footer": {
+    "support": [
+      {
+        "label": "Help Center",
+        "href": "https://help.beebotix.com"
+      },
+      {
+        "label": "Forum",
+        "href": "https://forum.beebotix.com"
+      },
+      {
+        "label": "Hire Us",
+        "href": "#contact"
+      },
+      {
+        "label": "Developer Blog",
+        "href": "https://blog.beebotix.com"
+      },
+      {
+        "label": "Developer Platform",
+        "href": "https://dev.beebotix.com"
+      },
+      {
+        "label": "System Status",
+        "href": "https://status.beebotix.com"
+      }
+    ],
+    "solutions": [
+      {
+        "label": "Modular Platforms",
+        "href": "#platform"
+      },
+      {
+        "label": "Custom Builds",
+        "href": "#contact"
+      },
+      {
+        "label": "Catalog",
+        "href": "https://catalog.beebotix.com"
+      },
+      {
+        "label": "OEM Partnership",
+        "href": "#contact"
+      },
+      {
+        "label": "RaaS",
+        "href": "#platform"
+      }
+    ],
+    "company": [
+      {
+        "label": "About",
+        "href": "#about"
+      },
+      {
+        "label": "Brands",
+        "href": "#brands"
+      },
+      {
+        "label": "Blog",
+        "href": "https://blog.beebotix.com"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/beebotix"
+      },
+      {
+        "label": "Contact",
+        "href": "#contact"
+      }
+    ],
+    "legal": [
+      {
+        "label": "Terms of Service",
+        "href": "pages/terms.html"
+      },
+      {
+        "label": "Privacy Policy",
+        "href": "pages/privacy.html"
+      },
+      {
+        "label": "Sitemap",
+        "href": "pages/sitemap.html"
+      }
+    ]
+  },
+  "contact": {
+    "headline": "Let's Build Together.",
+    "body": "Whether you're an OEM looking for a robotic base, an operator exploring RaaS, or a student building for the first time — we want to hear from you.",
+    "form_fields": [
+      {
+        "name": "name",
+        "label": "Your Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "email",
+        "label": "Email Address",
+        "type": "email",
+        "required": true
+      },
+      {
+        "name": "type",
+        "label": "I am a...",
+        "type": "select",
+        "required": false,
+        "options": [
+          "OEM Partner",
+          "RaaS Operator",
+          "Investor",
+          "Student / Maker",
+          "Other"
+        ]
+      },
+      {
+        "name": "message",
+        "label": "Tell us what you need",
+        "type": "textarea",
+        "required": true
+      }
+    ]
+  },
+  "gallery": {
+    "label": "Catalog Preview",
+    "headline": "Built.\nDeployed.\nOperating.",
+    "sub": "A snapshot of platforms, deployments, and builds. Full catalog at catalog.beebotix.com",
+    "cta": {
+      "label": "Browse Full Catalog",
+      "href": "https://catalog.beebotix.com"
+    },
+    "items": [
+      {
+        "id": "g1",
+        "title": "Industrial Inspection Platform",
+        "caption": "Modular UGV base — wheeled, sensor-ready, OEM-adaptable",
+        "category": "Land / OEM",
+        "img": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80&auto=format&fit=crop",
+        "link": "https://catalog.beebotix.com"
+      },
+      {
+        "id": "g2",
+        "title": "Autonomous Navigation Stack",
+        "caption": "Edge compute + sensor fusion — no cloud dependency",
+        "category": "Edge AI",
+        "img": "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&q=80&auto=format&fit=crop",
+        "link": "https://catalog.beebotix.com"
+      },
+      {
+        "id": "g3",
+        "title": "Spark Plug Photobooth Unit",
+        "caption": "B2C revenue-generating robot — rental / revenue-share model",
+        "category": "Consumer / B2C",
+        "img": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80&auto=format&fit=crop",
+        "link": "https://sparkplug.beebotix.com"
+      },
+      {
+        "id": "g4",
+        "title": "Subsurface Survey ROV",
+        "caption": "Tethered underwater platform — hull inspection, pipeline monitoring",
+        "category": "Underwater",
+        "img": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80&auto=format&fit=crop",
+        "link": "https://catalog.beebotix.com"
+      },
+      {
+        "id": "g5",
+        "title": "KAMAKIRI Border Scout",
+        "caption": "Ruggedised perimeter patrol — defence-grade, all-terrain",
+        "category": "Military / Industrial",
+        "img": "https://images.unsplash.com/photo-1563207153-f403bf289096?w=800&q=80&auto=format&fit=crop",
+        "link": "https://kamakiri.beebotix.com"
+      },
+      {
+        "id": "g6",
+        "title": "HopeFor0b001 Dev Kit",
+        "caption": "Open-hardware student kit — assemble, program, deploy",
+        "category": "Education",
+        "img": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80&auto=format&fit=crop",
+        "link": "https://hopefor0b001.beebotix.com"
+      }
+    ]
+  },
+  "ascii_art": {
+    "platform_cards": [
+      {
+        "id": "land_vehicle",
+        "label": "UGV in motion",
+        "art": "   _____\n  /|    |\\ \n / | [] | \\\n/__|____|__\\\n  O      O"
+      },
+      {
+        "id": "underwater_rov",
+        "label": "ROV diving",
+        "art": "    ~~~~~\n   [=(O)=]\n    ||||||\n   [_____]"
+      },
+      {
+        "id": "aerial_drone",
+        "label": "UAV airborne",
+        "art": " x     x\n  \\   /\n   [-O-]\n  /   \\\n x     x"
+      }
+    ]
+  }
+}

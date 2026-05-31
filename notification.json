@@ -1,0 +1,12 @@
+{
+  "notifications": [
+    {
+      "id": "n1",
+      "message": "Webpage is under construction — you may find bugs. To contact us directly, email contact@beebotix.com",
+      "dos": "2025-01-01T00:00:00",
+      "doe": "2026-06-03T23:59:59",
+      "link": "mailto:contact@beebotix.com",
+      "type": "warning"
+    }
+  ]
+}
