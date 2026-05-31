@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sitemap — BeeBotix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=IBM+Plex+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#080808;color:#f4f4ef;font-family:"IBM Plex Mono",monospace;font-size:14px;line-height:1.75;overflow-x:hidden}
+a{color:inherit;text-decoration:none}::selection{background:#f4f4ef;color:#080808}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:#111}::-webkit-scrollbar-thumb{background:#444}
+.pnav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 clamp(20px,5vw,64px);display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,.94);backdrop-filter:blur(20px);border-bottom:1px solid rgba(244,244,239,.09)}
+.pnav-logo{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:22px;letter-spacing:.05em;text-transform:uppercase;color:#f4f4ef}
+.pnav-back{font-family:"Press Start 2P",monospace;font-size:7px;letter-spacing:.08em;text-transform:uppercase;color:#888;border:1px solid #2e2e2e;padding:9px 14px;line-height:1.8;transition:color .16s,border-color .16s}
+.pnav-back:hover{color:#f4f4ef;border-color:#888}
+main{max-width:960px;margin:0 auto;padding:clamp(96px,11vw,140px) clamp(20px,5vw,64px) clamp(60px,8vw,100px)}
+.p-label{font-family:"Press Start 2P",monospace;font-size:7px;letter-spacing:.12em;text-transform:uppercase;color:#444;margin-bottom:14px;display:flex;align-items:center;gap:10px;line-height:2}
+.p-label::before{content:"";width:22px;height:1px;background:#2e2e2e;flex-shrink:0}
+h1{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:clamp(38px,6vw,72px);line-height:.93;letter-spacing:.02em;text-transform:uppercase;color:#f4f4ef;margin-bottom:48px}
+.smap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+@media(max-width:640px){.smap-grid{grid-template-columns:1fr}}
+.smap-col{background:rgba(244,244,239,.04);border:1px solid rgba(244,244,239,.08);padding:28px 24px}
+.smap-col-title{font-family:"Press Start 2P",monospace;font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:#666;margin-bottom:18px;line-height:2}
+.smap-col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.smap-col a{font-family:"IBM Plex Mono",monospace;font-size:13px;color:#888;transition:color .16s;display:flex;align-items:center;gap:7px}
+.smap-col a:hover{color:#f4f4ef}
+.ext{font-size:10px;color:#444;flex-shrink:0}
+</style>
+</head>
+<body>
+<nav class="pnav">
+  <a class="pnav-logo" href="../index.html">BeeBotix</a>
+  <a class="pnav-back" href="../index.html">
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:inline-block;vertical-align:middle;margin-right:6px"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Home
+  </a>
+</nav>
+<main>
+  <p class="p-label">Navigation</p>
+  <h1>Sitemap</h1>
+
+  <div class="smap-grid">
+    <div class="smap-col">
+      <p class="smap-col-title">Main Site</p>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#platform">Platform</a></li>
+        <li><a href="../index.html#brands">Brands</a></li>
+        <li><a href="../index.html#faq">FAQ</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="smap-col">
+      <p class="smap-col-title">Brands &amp; External</p>
+      <ul>
+        <li><a href="https://kamakiri.beebotix.com" target="_blank" rel="noopener">KAMAKIRI <span class="ext">↗</span></a></li>
+        <li><a href="https://sparkplug.beebotix.com" target="_blank" rel="noopener">Spark Plug <span class="ext">↗</span></a></li>
+        <li><a href="https://hopefor0b001.beebotix.com" target="_blank" rel="noopener">HopeFor0b001 <span class="ext">↗</span></a></li>
+        <li><a href="https://catalog.beebotix.com" target="_blank" rel="noopener">Catalog <span class="ext">↗</span></a></li>
+        <li><a href="https://blog.beebotix.com" target="_blank" rel="noopener">Blog <span class="ext">↗</span></a></li>
+        <li><a href="https://github.com/beebotix" target="_blank" rel="noopener">GitHub <span class="ext">↗</span></a></li>
+      </ul>
+    </div>
+    <div class="smap-col">
+      <p class="smap-col-title">Legal</p>
+      <ul>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="sitemap.html">Sitemap</a></li>
+      </ul>
+    </div>
+  </div>
+</main>
+</body>
+</html>
