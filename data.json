@@ -45,6 +45,11 @@
       "external": true
     },
     {
+      "label": "Developer",
+      "href": "https://dev.beebotix.com",
+      "external": true
+    },
+    {
       "label": "Contact",
       "href": "#contact",
       "external": false
@@ -352,7 +357,7 @@
       {
         "id": "g1",
         "title": "Industrial Inspection Platform",
-        "caption": "Modular UGV base — wheeled, sensor-ready, OEM-adaptable",
+        "caption": "Modular UGV base — wheeled, sensor-ready, field-deployable",
         "category": "Land / OEM",
         "img": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80&auto=format&fit=crop",
         "link": "https://catalog.beebotix.com"
@@ -368,7 +373,7 @@
       {
         "id": "g3",
         "title": "Spark Plug Photobooth Unit",
-        "caption": "B2C revenue-generating robot — rental / revenue-share model",
+        "caption": "B2C revenue robot — rental and revenue-share model",
         "category": "Consumer / B2C",
         "img": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80&auto=format&fit=crop",
         "link": "https://sparkplug.beebotix.com"
@@ -396,6 +401,54 @@
         "category": "Education",
         "img": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80&auto=format&fit=crop",
         "link": "https://hopefor0b001.beebotix.com"
+      },
+      {
+        "id": "g7",
+        "title": "Tracked Terrain Platform",
+        "caption": "All-terrain tracked base — slope-rated, payload-modular",
+        "category": "Land / OEM",
+        "img": "https://images.unsplash.com/photo-1563770660941-20978e870e26?w=800&q=80&auto=format&fit=crop",
+        "link": "https://catalog.beebotix.com"
+      },
+      {
+        "id": "g8",
+        "title": "Vision Inference Engine",
+        "caption": "Real-time object detection on embedded hardware, <15W",
+        "category": "Edge AI",
+        "img": "https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&q=80&auto=format&fit=crop",
+        "link": "https://catalog.beebotix.com"
+      },
+      {
+        "id": "g9",
+        "title": "Compact Aerial Scout",
+        "caption": "Fixed-wing VTOL — 45-min endurance, live video link",
+        "category": "Military / Industrial",
+        "img": "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&q=80&auto=format&fit=crop",
+        "link": "https://kamakiri.beebotix.com"
+      },
+      {
+        "id": "g10",
+        "title": "Arm Manipulation Module",
+        "caption": "6-DOF collaborative arm — plug-in to any BeeBotix base",
+        "category": "Land / OEM",
+        "img": "https://images.unsplash.com/photo-1561144257-e32e8506f63b?w=800&q=80&auto=format&fit=crop",
+        "link": "https://catalog.beebotix.com"
+      },
+      {
+        "id": "g11",
+        "title": "Classroom Bot Builder",
+        "caption": "Semester-ready curriculum kit — 3 difficulty levels",
+        "category": "Education",
+        "img": "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80&auto=format&fit=crop",
+        "link": "https://hopefor0b001.beebotix.com"
+      },
+      {
+        "id": "g12",
+        "title": "Event Activation Robot",
+        "caption": "Brand activation platform — interactive, crowd-drawing",
+        "category": "Consumer / B2C",
+        "img": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80&auto=format&fit=crop",
+        "link": "https://sparkplug.beebotix.com"
       }
     ]
   },
