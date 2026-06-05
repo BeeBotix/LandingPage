@@ -296,15 +296,21 @@ function uiForm(){
   var btn=form.querySelector(".form-btn"),note=g("form-note");
   form.addEventListener("submit",function(e){
     e.preventDefault();
-    if(btn){btn.textContent="Sending\u2026";btn.disabled=true;}
+    var name    = (form.querySelector('[name="name"]')   ||{}).value||"";
+    var email   = (form.querySelector('[name="email"]')  ||{}).value||"";
+    var type    = (form.querySelector('[name="type"]')   ||{}).value||"";
+    var message = (form.querySelector('[name="message"]')||{}).value||"";
+    var subj = "BeeBotix Inquiry" + (type?" \u2014 "+type:"") + (name?" from "+name:"");
+    var body = (name?"Name: "+name+"\n":"") + (email?"Email: "+email+"\n":"") + (type?"I am a: "+type+"\n":"") + "\nMessage:\n"+message+"\n\n\u2014 Sent via beebotix.com";
+    window.location.href = "mailto:contact@beebotix.com?subject="+encodeURIComponent(subj)+"&body="+encodeURIComponent(body);
+    if(note){ note.textContent="Opening your mail client…"; note.style.color="var(--g400)"; }
+    if(btn) { btn.textContent="Opening Mail…"; btn.disabled=true; }
     setTimeout(function(){
-      if(btn){btn.textContent="Message Received";btn.style.opacity="0.6";btn.style.cursor="default";}
-      if(note){note.textContent="We\u2019ll be in touch soon.";note.style.color="var(--g400)";}
-      form.reset();
-    },1200);
+      if(btn){btn.textContent="Send Message";btn.disabled=false;btn.style.opacity="";btn.style.cursor="";}
+      if(note){note.textContent="We respond within 48 hours.";note.style.color="";}
+    },3000);
   });
 }
-
 /* ================================================================
    ASCII DENSITY ART
    ================================================================ */
@@ -470,116 +476,119 @@ function injectOfferingAscii(){
 }
 
 /* ================================================================
-   GALLERY — 3D HELIX SCROLL
-   The scroll-driver height = 100vh (sticky) + N * SPREAD_Y (travel).
-   The sticky container stays locked at top:0 for the entire scroll.
-   Center text is position:fixed during sticky phase.
+   GALLERY — 3 INFINITE MARQUEE ROWS
+   True seamless loop: measure one set width ONCE, reset by exactly
+   that amount. Each row pauses independently on hover. B&W → colour
+   on card hover. All 3 rows share the same 12 items.
    ================================================================ */
-var GALLERY_SPREAD_Y = 110;   /* px between card centres */
-var GALLERY_RADIUS   = 300;   /* Z depth radius */
-var GALLERY_ROT_STEP = 52;    /* Y rotation degrees per card */
-
 function fillGallery(gallery){
+  /* Header text */
   var lbl=g("gallery-label"),hd=g("gallery-headline"),sub=g("gallery-sub"),cta=g("gallery-cta");
   if(lbl) lbl.textContent=gallery.label;
   if(hd&&gallery.headline) hd.innerHTML=gallery.headline.split("\n").map(xe).join("<br>");
   if(sub) sub.textContent=gallery.sub;
   if(cta){cta.textContent=gallery.cta.label;cta.href=gallery.cta.href;}
 
-  var ring=g("gallery-ring"); if(!ring) return;
   var items=gallery.items||[];
-  var N=items.length; if(!N) return;
+  if(!items.length) return;
 
-  var extIcon='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
-  var catAscii={"Land / OEM":" _\n[=]\nO O","Edge AI":"[cpu]\n||||","Consumer / B2C":"(o_o)\n |_|","Underwater":"~~~\n[R]","Military / Industrial":"/##\\\n|x|","Education":"/--\\\n|?|"};
+  var extSvg='<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 
-  items.forEach(function(item,i){
-    var card=mk("a");
-    card.className="gallery-card";
-    card.href=item.link; card.target="_blank"; card.rel="noopener";
-    card.setAttribute("aria-label",item.title);
-    card.setAttribute("data-index",String(i));
-    card.setAttribute("data-title",item.title);
-    card.setAttribute("data-sub",item.category);
-    card.style.setProperty("--card-ry",  (i*GALLERY_ROT_STEP)+"deg");
-    card.style.setProperty("--card-tz",  GALLERY_RADIUS+"px");
-    card.style.setProperty("--card-y",   (i*GALLERY_SPREAD_Y)+"px");
-    var ascii=catAscii[item.category]||"";
-    card.innerHTML=
-      '<img class="gallery-card-img" src="'+item.img+'" alt="'+xe(item.title)+'" loading="lazy" decoding="async"/>'+
-      '<div class="gallery-card-overlay"><p class="gallery-card-cat">'+xe(item.category)+'</p><p class="gallery-card-title">'+xe(item.title)+'</p><p class="gallery-card-caption">'+xe(item.caption)+'</p></div>'+
-      '<div class="gallery-card-ext">'+extIcon+'</div>'+
-      (ascii?'<pre class="gallery-card-ascii">'+ascii+'</pre>':'');
-    ring.appendChild(card);
-  });
-
-  /* Set driver height = 100vh for sticky + enough to scroll all cards */
-  var driver=g("gallery-scroll-driver");
-  if(driver){
-    var scrollNeeded=GALLERY_SPREAD_Y*(N-1);
-    /* Driver = sticky viewport (100vh) + travel distance */
-    driver.style.height="calc(100vh + "+scrollNeeded+"px)";
+  /* Build one card DOM node */
+  function makeCard(item){
+    var a=mk("a");
+    a.className="gallery-card";
+    a.href=item.link||"#"; a.target="_blank"; a.rel="noopener noreferrer";
+    a.setAttribute("draggable","false");
+    a.innerHTML=
+      '<img class="gallery-card-img" src="'+item.img+'" alt="'+xe(item.title)+'" draggable="false" loading="lazy"/>'+
+      '<div class="gallery-card-overlay">'+
+        '<p class="gallery-card-cat">'+xe(item.category)+'</p>'+
+        '<h3 class="gallery-card-title">'+xe(item.title)+'</h3>'+
+        '<p class="gallery-card-caption">'+xe(item.caption)+'</p>'+
+        '<span class="gallery-card-link">View '+extSvg+'</span>'+
+      '</div>';
+    return a;
   }
 
-  initHelixScroll(N);
-}
+  /* Row config: direction and speed */
+  var rows=[
+    {id:"gallery-band-0", dir:1,  speed:0.55},   /* L → R */
+    {id:"gallery-band-1", dir:-1, speed:0.45},   /* R → L */
+    {id:"gallery-band-2", dir:1,  speed:0.65}    /* L → R  (slightly faster) */
+  ];
 
-function initHelixScroll(N){
-  var driver=g("gallery-scroll-driver");
-  var ringEl=g("gallery-ring");
-  var centerLabel=g("gallery-center-label");
-  var centerText=g("gallery-center-text");
-  var centerSub=g("gallery-center-sub");
-  if(!driver||!ringEl) return;
+  rows.forEach(function(row){
+    var track=g(row.id); if(!track) return;
 
-  var cards=Array.prototype.slice.call(ringEl.querySelectorAll(".gallery-card"));
-  var totalTravel=GALLERY_SPREAD_Y*(N-1);
-  var targetY=0,currentY=0,targetRot=0,currentRot=0,prevFront=-1;
+    /* All 3 rows use the same full item set (same content) */
+    var rowItems = items;  /* 12 items, same for all rows */
 
-  window.addEventListener("scroll",function(){
-    var rect=driver.getBoundingClientRect();
-    var scrolled=Math.max(0,-rect.top);
-    var pct=Math.min(1,scrolled/totalTravel);
-    targetY  =pct*totalTravel;
-    targetRot=pct*GALLERY_ROT_STEP*(N-1);
-    /* Show/hide center label based on whether we're in sticky phase */
-    if(centerLabel){
-      var inSticky = rect.top<=0 && rect.bottom>window.innerHeight;
-      centerLabel.classList.toggle("visible", inSticky);
-    }
-  },{passive:true});
-
-  (function frame(){
-    requestAnimationFrame(frame);
-    currentY  +=(targetY  -currentY  )*0.09;
-    currentRot+=(targetRot-currentRot)*0.09;
-
-    /* Translate ring UP (cards scroll past viewport) + rotate on Y */
-    ringEl.style.transform="translateY(-"+currentY+"px) rotateY(-"+currentRot+"deg)";
-
-    /* Per-card: scale + fade based on distance from viewport centre */
-    var frontIdx=0,minDist=1e9;
-    cards.forEach(function(card,i){
-      var cardY=i*GALLERY_SPREAD_Y-currentY;
-      var dist=Math.abs(cardY);
-      card.style.setProperty("--active-scale",dist<70?String(1+0.10*(1-dist/70)):"1");
-      card.style.setProperty("--active-opacity",String(Math.max(0.30,1-dist/240)));
-      if(dist<minDist){minDist=dist;frontIdx=i;}
+    /* Build ONE set of cards, measure it, then clone for seamless loop */
+    rowItems.forEach(function(item){
+      track.appendChild(makeCard(item));
     });
 
-    /* Centre text: update when front card changes */
-    if(frontIdx!==prevFront){
-      prevFront=frontIdx;
-      var fc=cards[frontIdx];
-      if(centerText) centerText.textContent=fc?fc.getAttribute("data-title"):"";
-      if(centerSub)  centerSub.textContent =fc?fc.getAttribute("data-sub"):"";
-    }
-    if(centerLabel){
-      /* Show label whenever any card is within 200px of centre */
-      centerLabel.classList.toggle("visible",minDist<200);
-    }
+    /* After first paint, measure the natural width of one set */
+    /* Then prepend a clone so R→L rows start from right naturally */
+    row.el    = track;
+    row.ready = false;
+  });
+
+  /* Single rAF after layout */
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      rows.forEach(function(row){
+        var track=row.el; if(!track) return;
+        /* Measure one set width */
+        var oneW = track.scrollWidth;  /* only one set so far */
+        row.oneW = oneW;
+
+        /* Clone the set and append — track now has 2 identical sets */
+        /* This is enough: when pos crosses oneW we reset to 0 */
+        Array.prototype.slice.call(track.children).forEach(function(card){
+          track.appendChild(card.cloneNode(true));
+        });
+
+        /* R→L rows: initialise pos so first card is at the right edge */
+        row.pos = row.dir < 0 ? oneW : 0;
+
+        /* Apply initial transform */
+        track.style.transform = "translateX(" + (-row.pos) + "px)";
+
+        row.ready = true;
+      });
+
+      /* Start the animation once all rows are measured */
+      startMarqueeRows(rows);
+    });
+  });
+}
+
+function startMarqueeRows(rows){
+  /* Wire hover per band — only that band pauses */
+  var bandEls = document.querySelectorAll(".gallery-band");
+  bandEls.forEach(function(bandEl, idx){
+    bandEl.addEventListener("mouseenter", function(){ if(rows[idx]) rows[idx].paused=true;  });
+    bandEl.addEventListener("mouseleave", function(){ if(rows[idx]) rows[idx].paused=false; });
+    rows[idx].paused = false;
+  });
+
+  (function tick(){
+    requestAnimationFrame(tick);
+    rows.forEach(function(row){
+      if(!row.ready || row.paused) return;
+      row.pos += row.speed * row.dir;
+
+      /* Seamless loop: when we've scrolled one full set, snap back */
+      if(row.dir > 0 && row.pos >= row.oneW) row.pos -= row.oneW;  /* L→R */
+      if(row.dir < 0 && row.pos <= 0)        row.pos += row.oneW;  /* R→L */
+
+      row.el.style.transform = "translateX(" + (-row.pos) + "px)";
+    });
   })();
 }
+
 
 /* ================================================================
    WEBGL — HERO GLOBE
@@ -594,9 +603,11 @@ function heroGL(){
   if(W<50)  W=Math.round(window.innerWidth*0.6);
 
   var scene=new THREE.Scene();
-  var cam=new THREE.PerspectiveCamera(52,W/H,0.1,100);
-  /* Canvas is right 60% — camera centred, globe at scene origin (right-of-page naturally) */
-  cam.position.set(0,0,4.5);
+  /* Wider FOV to see more of the globe, closer z */
+  var cam=new THREE.PerspectiveCamera(55,W/H,0.1,100);
+  /* Shift camera left so globe appears in RIGHT portion of canvas */
+  /* Canvas is right 60% of page; shifting camera left shows globe offset right */
+  cam.position.set(0, 0, 4.2);
 
   var ren=new THREE.WebGLRenderer({canvas:canvas,alpha:true,antialias:true});
   ren.setPixelRatio(Math.min(window.devicePixelRatio,2));
@@ -613,48 +624,46 @@ function heroGL(){
 
   var R=1.5;
 
-  /* Sphere wireframe */
-  var globeM=new THREE.Mesh(new THREE.SphereGeometry(R,32,24),wMat(0.07));
-  scene.add(globeM);
+  /* Sphere base — very faint wireframe */
+  var globeM=new THREE.Mesh(new THREE.SphereGeometry(R,36,26),wMat(0.06));
 
-  /* Latitude circles */
+  /* Latitude circles every 15° */
   var latG=new THREE.Group();
   for(var lat=-75;lat<=75;lat+=15){
     var lr=(lat*Math.PI)/180,cr=R*Math.cos(lr),cy=R*Math.sin(lr),pts2=[];
-    for(var s=0;s<=64;s++){var a=(s/64)*Math.PI*2;pts2.push(new THREE.Vector3(cr*Math.cos(a),cy,cr*Math.sin(a)));}
-    latG.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts2),eMat(lat===0?0.40:0.18)));
+    for(var s=0;s<=80;s++){var a=(s/80)*Math.PI*2;pts2.push(new THREE.Vector3(cr*Math.cos(a),cy,cr*Math.sin(a)));}
+    latG.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts2),eMat(lat===0?0.55:0.22)));
   }
-  scene.add(latG);
 
-  /* Longitude circles */
+  /* Longitude circles every 20° */
   var lonG=new THREE.Group();
   for(var lon=0;lon<360;lon+=20){
     var lonR=(lon*Math.PI)/180,pts3=[];
-    for(var s2=0;s2<=64;s2++){var ph=(s2/64)*Math.PI-Math.PI/2;pts3.push(new THREE.Vector3(R*Math.cos(ph)*Math.cos(lonR),R*Math.sin(ph),R*Math.cos(ph)*Math.sin(lonR)));}
-    lonG.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts3),eMat(0.15)));
+    for(var s2=0;s2<=80;s2++){var ph=(s2/80)*Math.PI-Math.PI/2;pts3.push(new THREE.Vector3(R*Math.cos(ph)*Math.cos(lonR),R*Math.sin(ph),R*Math.cos(ph)*Math.sin(lonR)));}
+    lonG.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts3),eMat(0.18)));
   }
-  scene.add(lonG);
 
-  /* Equator ring */
-  var eq=new THREE.Mesh(new THREE.TorusGeometry(R,0.01,8,128),new THREE.MeshBasicMaterial({color:0xf4f4ef,opacity:0.55,transparent:true}));
-  scene.add(eq);
+  /* Particle star field — dots scattered around the globe */
+  var starCount=280, starPos=new Float32Array(starCount*3);
+  for(var si=0;si<starCount;si++){
+    var sPhi=Math.acos(2*Math.random()-1), sTh=Math.random()*Math.PI*2, sRad=2.1+Math.random()*2.2;
+    starPos[si*3]  =sRad*Math.sin(sPhi)*Math.cos(sTh);
+    starPos[si*3+1]=sRad*Math.sin(sPhi)*Math.sin(sTh);
+    starPos[si*3+2]=sRad*Math.cos(sPhi);
+  }
+  var starGeo=new THREE.BufferGeometry();
+  starGeo.setAttribute("position",new THREE.BufferAttribute(starPos,3));
+  var starPts=new THREE.Points(starGeo,new THREE.PointsMaterial({
+    color:0xf4f4ef, size:0.028, opacity:0.55, transparent:true, sizeAttenuation:true
+  }));
 
-  /* Orbital rings */
-  var orb1=new THREE.Mesh(new THREE.TorusGeometry(R*1.35,0.007,8,128),new THREE.MeshBasicMaterial({color:0xf4f4ef,opacity:0.25,transparent:true}));
-  orb1.rotation.x=Math.PI/4; orb1.rotation.z=Math.PI/6;
-  scene.add(orb1);
-
-  var orb2=new THREE.Mesh(new THREE.TorusGeometry(R*1.75,0.005,8,128),new THREE.MeshBasicMaterial({color:0xf4f4ef,opacity:0.14,transparent:true}));
-  orb2.rotation.x=-Math.PI/3; orb2.rotation.y=Math.PI/5;
-  scene.add(orb2);
-
-  /* Particles */
-  var N2=300,pos=new Float32Array(N2*3);
-  for(var i=0;i<N2;i++){var phi=Math.acos(2*Math.random()-1),th=Math.random()*Math.PI*2,rad=2.1+Math.random()*1.8;pos[i*3]=rad*Math.sin(phi)*Math.cos(th);pos[i*3+1]=rad*Math.sin(phi)*Math.sin(th);pos[i*3+2]=rad*Math.cos(phi);}
-  var pts=new THREE.Points(new THREE.BufferGeometry().setAttribute("position",new THREE.BufferAttribute(pos,3)),new THREE.PointsMaterial({color:0xf4f4ef,size:0.022,opacity:0.45,transparent:true}));
-  scene.add(pts);
-
-  var all=[globeM,latG,lonG,eq,orb1,orb2,pts];
+  /* Group — sphere + lat/lon lines + star particles */
+  var globeGroup=new THREE.Group();
+  globeGroup.add(globeM);
+  globeGroup.add(latG);
+  globeGroup.add(lonG);
+  globeGroup.add(starPts);
+  scene.add(globeGroup);
 
   var scrollP=0,mX=0,mY=0;
   window.addEventListener("scroll",function(){var h=g("hero");if(h)scrollP=Math.min(window.scrollY/h.offsetHeight,1);},{passive:true});
@@ -664,15 +673,14 @@ function heroGL(){
   (function loop(){
     requestAnimationFrame(loop);
     var t=clk.getElapsedTime(),sy=-scrollP*2.2;
-    globeM.rotation.y=latG.rotation.y=lonG.rotation.y=eq.rotation.y=t*0.09;
-    orb1.rotation.z=t*0.12; orb2.rotation.y=t*0.07; orb2.rotation.z=-t*0.05;
-    pts.rotation.y=t*0.025; pts.rotation.x=t*0.012;
-    eq.scale.setScalar(1+Math.sin(t*1.4)*0.025);
-    all.forEach(function(o){o.position.y=sy;});
-    /* Camera centred — globe is at scene origin, fills the right-60% canvas */
-    cam.position.x+=(mX*0.35-cam.position.x)*0.04;
-    cam.position.y+=(-mY*0.30-cam.position.y)*0.04;
-    cam.lookAt(0,sy*0.2,0);
+    /* Rotate globe group slowly — lat/lon lines rotate with it */
+    globeGroup.rotation.y=t*0.09;
+    globeGroup.position.y=sy;
+    /* Mouse parallax around base offset */
+    var gbx=-0.8;
+    cam.position.x+=(gbx+mX*0.3-cam.position.x)*0.04;
+    cam.position.y+=(-mY*0.28-cam.position.y)*0.04;
+    cam.lookAt(0.5,sy*0.2,0);
     ren.render(scene,cam);
   })();
 }
@@ -711,27 +719,65 @@ function brandsGL(){
 function initNotifBar(){
   function load(cb){
     fetch("notification.json").then(function(r){return r.json();}).then(cb).catch(function(){
-      var x=new XMLHttpRequest(); x.open("GET","notification.json"); x.onload=function(){try{cb(JSON.parse(x.responseText));}catch(e){}};x.onerror=function(){};x.send();
+      var x=new XMLHttpRequest(); x.open("GET","notification.json");
+      x.onload=function(){try{cb(JSON.parse(x.responseText));}catch(e){}};
+      x.onerror=function(){}; x.send();
     });
   }
   load(function(data){
-    var now=new Date(),bar=g("notif-bar"),track=g("notif-track");
+    var now=new Date(), bar=g("notif-bar"), track=g("notif-track");
     if(!bar||!track) return;
     var active=(data.notifications||[]).filter(function(n){
-      return now>=new Date(n.dos||0)&&now<=new Date(n.doe||"2099-12-31");
+      return now>=new Date(n.dos||0) && now<=new Date(n.doe||"2099-12-31");
     });
     if(!active.length) return;
+
+    /* Build one full set of notification spans */
     var sep='<span class="notif-dot"></span>';
-    var items=active.map(function(n){
-      var txt=n.link?'<a href="'+n.link+'" target="_blank" rel="noopener">'+xe(n.message)+'</a>':xe(n.message);
-      return '<span class="notif-item">'+sep+' '+txt+'</span>';
-    }).join("");
-    track.innerHTML=items+items;
+    var oneSet=active.map(function(n){
+      /* No link — plain text only */
+      return '<span class="notif-item">'+sep+' '+xe(n.message)+'</span>';
+    }).join('<span class="notif-sep">·</span>');
+
+    /* Put 4 copies so we always have content in view at any scroll position */
+    track.innerHTML=oneSet+oneSet+oneSet+oneSet;
     bar.style.display="flex";
-    if(active[0].type==="warning") bar.classList.add("notif-warning");
     document.body.classList.add("has-notif");
-    var cb=g("notif-close");
-    if(cb){cb.addEventListener("click",function(){bar.style.display="none";document.body.classList.remove("has-notif");try{sessionStorage.setItem("notif-dismissed","1");}catch(e){}});}
-    try{if(sessionStorage.getItem("notif-dismissed")==="1"){bar.style.display="none";document.body.classList.remove("has-notif");}}catch(e){}
+
+    /* JS rAF marquee — measure ONE set width, loop seamlessly */
+    var dismissed=false;
+    try{ if(sessionStorage.getItem("notif-dismissed")==="1"){ dismissed=true; } }catch(e){}
+    if(dismissed){ bar.style.display="none"; document.body.classList.remove("has-notif"); return; }
+
+    /* Dismiss button */
+    var closeBtn=g("notif-close");
+    if(closeBtn){
+      closeBtn.addEventListener("click",function(){
+        bar.style.display="none";
+        document.body.classList.remove("has-notif");
+        try{sessionStorage.setItem("notif-dismissed","1");}catch(e){}
+      });
+    }
+
+    /* Wait for layout so we can measure the track */
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        var fullW = track.scrollWidth;   /* 4 copies */
+        var oneW  = fullW / 4;           /* width of 1 copy */
+        var pos   = 0;
+        var speed = 0.55;                /* px per frame — ~33px/s at 60fps */
+        var hovering=false;
+        track.parentElement.addEventListener("mouseenter",function(){ hovering=true; });
+        track.parentElement.addEventListener("mouseleave",function(){ hovering=false; });
+        (function tick(){
+          requestAnimationFrame(tick);
+          if(hovering) return;
+          pos+=speed;
+          /* When we've scrolled one full copy, reset by one copy width (seamless) */
+          if(pos>=oneW) pos-=oneW;
+          track.style.transform="translateX(-"+pos+"px)";
+        })();
+      });
+    });
   });
 }
